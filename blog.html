@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Writing — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+  .page-hero {
+    max-width: 1100px; margin: 0 auto;
+    padding: 10rem 3rem 5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .page-title { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .page-title em { font-style: italic; color: var(--accent); }
+  .page-desc { font-size: 1rem; line-height: 1.8; color: #4a4540; max-width: 60ch; }
+
+  .posts-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 7rem; }
+
+  /* FEATURED POST */
+  .featured-post {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid var(--rule); margin-bottom: 4rem;
+    transition: box-shadow 0.25s;
+  }
+  .featured-post:hover { box-shadow: 6px 6px 0 var(--rule); }
+  .featured-post-content { padding: 3rem; border-right: 1px solid var(--rule); }
+  .featured-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .featured-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.25; margin-bottom: 1rem; }
+  .featured-excerpt { font-size: 0.92rem; line-height: 1.8; color: #4a4540; margin-bottom: 1.75rem; }
+  .read-more { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; color: var(--accent); display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.2s; }
+  .read-more:hover { gap: 0.9rem; }
+  .featured-meta { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; background: #ede7da; }
+  .featured-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .featured-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: auto; }
+  .tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border: 1px solid var(--rule); color: var(--muted); }
+  .featured-quote { font-family: var(--serif); font-size: 1.15rem; font-style: italic; line-height: 1.5; color: var(--ink); margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+
+  /* POST LIST */
+  .posts-heading { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .posts-heading::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .post-list { list-style: none; }
+  .post-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 100px 1fr auto; gap: 2rem; align-items: center; }
+  .post-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .post-title-link { text-decoration: none; color: inherit; }
+  .post-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.4rem; line-height: 1.3; transition: color 0.2s; }
+  .post-title-link:hover .post-title { color: var(--accent); }
+  .post-summary { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .post-arrow { font-family: var(--mono); font-size: 0.8rem; color: var(--rule); transition: color 0.2s, transform 0.2s; }
+  .post-title-link:hover ~ .post-arrow,
+  .post-item:hover .post-arrow { color: var(--accent); transform: translateX(4px); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .page-hero, .posts-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-hero { padding-top: 8rem; }
+    .featured-post { grid-template-columns: 1fr; }
+    .featured-post-content { border-right: none; border-bottom: 1px solid var(--rule); }
+    .post-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .post-date { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research & CV</a></li>
+    <li><a href="blog.html" class="active">Writing</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero fade-in">
+  <p class="page-eyebrow">Thought Leadership</p>
+  <h1 class="page-title">Ideas on Human–<em>AI</em><br/>Collaboration</h1>
+  <p class="page-desc">Original thinking at the intersection of research, practice, and the messy reality of how people actually work with intelligent systems.</p>
+</div>
+
+<div class="posts-body">
+
+  <!-- FEATURED -->
+  <a href="blog/crisis-adoption-problem.html" class="featured-post" style="text-decoration: none; color: inherit; display: grid;">
+    <div class="featured-post-content">
+      <p class="featured-label">★ Featured Essay</p>
+      <h2 class="featured-title">The Crisis Adoption Problem</h2>
+      <p class="featured-excerpt">We reach for AI hardest when we can least afford to get it wrong. Organizations adopt new AI tools fastest under crisis conditions — exactly when careful evaluation, trust calibration, and critical thinking are most important, and most scarce. This isn't ironic. It's structural.</p>
+      <span class="read-more">Read Essay →</span>
+    </div>
+    <div class="featured-meta">
+      <div>
+        <p class="featured-date">June 2026</p>
+        <div class="featured-tags">
+          <span class="tag">AI Adoption</span>
+          <span class="tag">Trust</span>
+          <span class="tag">Human Factors</span>
+          <span class="tag">Organizations</span>
+        </div>
+      </div>
+      <p class="featured-quote">"The conditions that make AI adoption feel most urgent are precisely those that make careful evaluation least likely."</p>
+    </div>
+  </a>
+
+  <!-- POST LIST -->
+  <p class="posts-heading">All Writing</p>
+  <ul class="post-list">
+    <li class="post-item">
+      <span class="post-date">Jun 2026</span>
+      <a href="blog/crisis-adoption-problem.html" class="post-title-link">
+        <p class="post-title">The Crisis Adoption Problem</p>
+        <p class="post-summary">Why organizations adopt AI most aggressively precisely when they should be most careful.</p>
+      </a>
+      <span class="post-arrow">→</span>
+    </li>
+  </ul>
+  <p style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 3rem; text-align: center;">More essays coming soon</p>
+</div>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="index.html" style="color: inherit; text-decoration: none;">← Back to Home</a></span>
+</footer>
+
+</body>
+</html>
