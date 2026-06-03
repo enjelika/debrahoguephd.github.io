@@ -215,38 +215,18 @@
   .hero-graphic-inner {
     width: 100%;
     padding-bottom: 110%;
-    background: linear-gradient(145deg, #e8dfd0 0%, #d4c9b5 50%, #c4b8a4 100%);
     position: relative;
     overflow: hidden;
+    background: linear-gradient(145deg, #e8dfd0 0%, #d4c9b5 100%);
   }
 
-  .graphic-text {
+  .hero-graphic-inner img {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .graphic-quote {
-    font-family: var(--serif);
-    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.4;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-
-  .graphic-attr {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   /* decorative corner lines */
@@ -257,6 +237,7 @@
     width: 40px; height: 40px;
     border-color: var(--accent);
     border-style: solid;
+    z-index: 2;
   }
   .hero-graphic-inner::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
   .hero-graphic-inner::after  { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
@@ -652,10 +633,7 @@
   <div class="hero-right">
     <div class="hero-graphic">
       <div class="hero-graphic-inner">
-        <div class="graphic-text">
-          <p class="graphic-quote">"The gap between understanding and trust is where human-AI collaboration fails."</p>
-          <p class="graphic-attr">— MICA Framework Research, 2025</p>
-        </div>
+        <img src="headshot.png" alt="Dr. Debra Hogue — Computer Scientist & Human-AI Collaboration Researcher"/>
       </div>
     </div>
     <div class="stat-row">
