@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Beyond the Lab — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(245,240,232,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+  /* PAGE HERO */
+  .page-hero { max-width: 1100px; margin: 0 auto; padding: 10rem 3rem 5rem; border-bottom: 1px solid var(--rule); }
+  .page-eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .page-title { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .page-title em { font-style: italic; color: var(--accent); }
+  .page-desc { font-size: 1rem; line-height: 1.8; color: #4a4540; max-width: 65ch; }
+
+  /* SECTION STRUCTURE */
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 7rem; }
+  .cv-section { margin-bottom: 5rem; }
+  .section-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--accent); opacity: 0.35; }
+  .section-heading { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300; margin-bottom: 2.5rem; line-height: 1.2; }
+
+  /* BOOK CARDS */
+  .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .book-card { background: var(--paper); padding: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; transition: background 0.2s; }
+  .book-card:hover { background: #ede7da; }
+  .book-cover { width: 100%; max-width: 160px; aspect-ratio: 3/4; object-fit: cover; border: 1px solid var(--rule); display: block; }
+  .book-cover-placeholder { width: 100%; max-width: 160px; aspect-ratio: 3/4; background: linear-gradient(145deg, #e8dfd0, #d4c9b5); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 0.9rem; font-style: italic; color: var(--muted); text-align: center; padding: 1rem; }
+  .book-tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border: 1px solid var(--accent); color: var(--accent); display: inline-block; }
+  .book-tag.published { background: var(--accent); color: var(--paper); }
+  .book-tag.progress { border-color: var(--muted); color: var(--muted); }
+  .book-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; line-height: 1.25; }
+  .book-subtitle { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--muted); margin-top: -0.75rem; }
+  .book-role { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .book-desc { font-size: 0.88rem; line-height: 1.75; color: #4a4540; }
+  .book-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .book-link { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; display: inline-block; margin-top: 0.25rem; }
+  .book-link:hover { opacity: 0.7; }
+
+  /* COMMUNITY */
+  .community-block { border: 1px solid var(--rule); padding: 3rem; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; margin-bottom: 2rem; transition: background 0.2s; }
+  .community-block:hover { background: #ede7da; }
+  .community-icon { font-size: 3rem; line-height: 1; }
+  .community-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .community-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.75rem; }
+  .community-body { font-size: 0.9rem; line-height: 1.8; color: #4a4540; margin-bottom: 0.75rem; }
+  .community-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  /* WRITING IN PROGRESS */
+  .writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .writing-card { background: var(--paper); padding: 2.5rem; transition: background 0.2s; }
+  .writing-card:hover { background: #ede7da; }
+  .writing-number { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+  .writing-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.3; margin-bottom: 0.5rem; }
+  .writing-subtitle { font-family: var(--serif); font-size: 0.95rem; font-style: italic; color: var(--muted); margin-bottom: 0.75rem; }
+  .writing-body { font-size: 0.88rem; line-height: 1.75; color: #4a4540; margin-bottom: 0.75rem; }
+  .writing-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { gap: 1.5rem; }
+    .page-hero, .page-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-hero { padding-top: 8rem; }
+    .book-grid { grid-template-columns: 1fr; }
+    .community-block { grid-template-columns: 1fr; gap: 1.5rem; }
+    .writing-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research &amp; CV</a></li>
+    <li><a href="blog.html">Writing</a></li>
+    <li><a href="beyond.html" class="active">Beyond the Lab</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero fade-in">
+  <p class="page-eyebrow">Community &amp; Creative Work</p>
+  <h1 class="page-title">Beyond<br/><em>the Lab</em></h1>
+  <p class="page-desc">Research is only one part of a life well lived. Here you'll find the books I've written and illustrated, the community I serve, and the creative work that shapes who I am — as much as any dissertation ever could.</p>
+</div>
+
+<div class="page-body">
+
+  <!-- BOOKS: AUTHOR -->
+  <section class="cv-section">
+    <p class="section-label">01</p>
+    <h2 class="section-heading">Books Written</h2>
+    <div class="book-grid">
+
+      <div class="book-card">
+        <img src="corgis-tale-cover.png" alt="A Corgi's Tale: When Holly Met Newton" class="book-cover"/>
+        <span class="book-tag published">Published</span>
+        <h3 class="book-title">A Corgi's Tale</h3>
+        <p class="book-subtitle">When Holly Met Newton</p>
+        <p class="book-role">Written &amp; Illustrated · 2017</p>
+        <p class="book-desc">The real-life story of Holly, a rescue dog, meeting her new brother Newton — also a rescue dog. Written and hand-illustrated to help children understand and embrace the adoption of a rescue dog. Dedicated to my son, Robbie.</p>
+        <p class="book-meta">24 pages &middot; Children's Picture Book &middot; Self-published</p>
+      </div>
+
+      <div class="book-card">
+        <img src="realms-of-wonder.png" alt="Realms of Wonder: The Adventures of Robbie and Rusty" class="book-cover" style="max-width:130px;aspect-ratio:2/3;"/>
+        <span class="book-tag progress">In Progress</span>
+        <h3 class="book-title">Realms of Wonder</h3>
+        <p class="book-subtitle">The Adventures of Robbie and Rusty</p>
+        <p class="book-role">Written by Debra Hogue &middot; Illustrated with AI (Gemini)</p>
+        <p class="book-desc">A fantasy adventure following a boy and his dog through magical realms. Inspired by my son Robbie and his dog Rusty. A personal exploration of storytelling at the intersection of human imagination and AI-assisted illustration — a living example of human intent driving creative tools.</p>
+        <p class="book-meta">Hardcover &middot; Demo copy printed &middot; JMR Publishing</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKS: ILLUSTRATOR -->
+  <section class="cv-section">
+    <p class="section-label">02</p>
+    <h2 class="section-heading">Books Illustrated</h2>
+    <div class="book-grid">
+
+      <div class="book-card">
+        <div class="book-cover-placeholder">Cover available at Oklahoma Books Online</div>
+        <span class="book-tag published">Published</span>
+        <h3 class="book-title">Crossing the Rainbow Bridge</h3>
+        <p class="book-role">Illustrator &middot; Author: J. Michael Robertson</p>
+        <p class="book-desc">A spiritual children's story in which young siblings Stephen and Holly journey to a place just this side of heaven, where animals are healthy and vigorous as they wait for their human companions. Illustrated in full color across 46 pages for this sequel to Robertson's <em>Are There Giraffes in Heaven?</em></p>
+        <p class="book-meta">46 pages &middot; Full color &middot; JMR Publishing &middot; ISBN: 978-1-948362-19-1</p>
+        <a href="https://oklahomabooksonline.com/books/ols/products/crossing-the-rainbow-bridge" target="_blank" class="book-link">Purchase at Oklahoma Books Online ↗</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKS: IN PROGRESS -->
+  <section class="cv-section">
+    <p class="section-label">03</p>
+    <h2 class="section-heading">Writing in Progress</h2>
+    <div class="writing-grid">
+
+      <div class="writing-card">
+        <p class="writing-number">Co-Author</p>
+        <h3 class="writing-title">The Upward Spiral</h3>
+        <p class="writing-subtitle">Rising Through Adversity</p>
+        <p class="writing-body">A book for professional women navigating workplace adversity — the kind that doesn't show up in job descriptions but shapes careers and lives. Drawing on real experiences from the authors, this book offers honest reflection, hard-won wisdom, and a path forward for women facing systemic challenges in professional settings. Foreword by Aquilah Ahmad.</p>
+        <p class="writing-meta">Co-authored with Yolanda Faye Perry &middot; In Progress</p>
+      </div>
+
+      <div class="writing-card">
+        <p class="writing-number">Curriculum Contributor</p>
+        <h3 class="writing-title">Mission u 2029 Children's Curriculum</h3>
+        <p class="writing-subtitle">United Women in Faith</p>
+        <p class="writing-body">Contributing to the development of the 2029 Mission u Children's Curriculum for United Women in Faith — a Biblically-centered, anti-oppression educational program designed for use in local church and ecumenical settings. The curriculum is structured for 8 hour-long sessions and designed to deepen Biblical literacy, spirituality, and action at the local level.</p>
+        <p class="writing-meta">Contributor Role &middot; Children's Curriculum Writing Team &middot; Release: September 2028</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMMUNITY SERVICE -->
+  <section class="cv-section">
+    <p class="section-label">04</p>
+    <h2 class="section-heading">Community Service</h2>
+
+    <div class="community-block">
+      <div>
+        <div class="community-icon">🏫</div>
+      </div>
+      <div>
+        <p class="community-label">PALS Association · Moore, Oklahoma</p>
+        <h3 class="community-title">St. John's Lutheran School — PALS Association President</h3>
+        <p class="community-body">As President of the PALS Association at St. John's Lutheran School in Moore, Oklahoma — where my son Robbie attends — I lead the parent-teacher organization in coordinating fundraising, community events, school enrichment programs, and family engagement initiatives. PALS is at the heart of what makes SJLS a community, and I am deeply invested in its mission and its students.</p>
+        <p class="community-body">My work with PALS has included securing Oklahoma City Community Foundation grants for campus improvements — including the Garden of Wonder outdoor classroom, landscaping, and drainage infrastructure — coordinating Scholastic Book Fairs, school auctions, and community outreach, building a school clothing closet, and developing direct outreach campaigns for enrollment growth.</p>
+        <p class="community-meta">PALS Association President &middot; St. John's Lutheran School &middot; Moore, Oklahoma</p>
+      </div>
+    </div>
+
+    <div class="community-block">
+      <div>
+        <div class="community-icon">🎽</div>
+      </div>
+      <div>
+        <p class="community-label">American Cancer Society · March 2026</p>
+        <h3 class="community-title">31-Mile Charity Walk</h3>
+        <p class="community-body">Completed a 31-mile American Cancer Society charity walk with my service dog Marley — meeting my fundraising goal. Cancer has touched my family personally, and this walk was a meaningful way to turn that into action.</p>
+        <p class="community-meta">American Cancer Society &middot; 31 Miles &middot; Completed March 2026</p>
+      </div>
+    </div>
+
+    <div class="community-block">
+      <div>
+        <div class="community-icon">⛪</div>
+      </div>
+      <div>
+        <p class="community-label">Faith Community</p>
+        <h3 class="community-title">United Methodist Curriculum Writing Team</h3>
+        <p class="community-body">Serving as a contributor on the writing team for the United Women in Faith Mission u 2029 curriculum — developing Biblically-centered, anti-oppression educational content for use in church communities across the country. The curriculum is designed to build Biblical literacy, deepen spirituality, and inspire action at the local level, with release planned for September 2028.</p>
+        <p class="community-meta">United Women in Faith &middot; Mission u 2029 &middot; Children's Curriculum Contributor</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  <span>&copy; 2026 Dr. Debra Hogue</span>
+  <span><a href="index.html" style="color: inherit; text-decoration: none;">&#8592; Back to Home</a></span>
+</footer>
+
+</body>
+</html>
