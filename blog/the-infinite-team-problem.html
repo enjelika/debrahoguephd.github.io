@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Infinite Team Problem — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--muted); border-bottom: 1px dotted var(--muted); text-decoration: none; }
+  .footnote-text a:hover { color: var(--accent); }
+
+  .article-signoff { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); display: flex; gap: 1.5rem; align-items: center; }
+  .signoff-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #c4b8a4, #8b3a2a); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.3rem; color: var(--paper); flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research &amp; CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">The Infinite<br/><em>Team Problem</em></h1>
+  <p class="article-subtitle">Meta just launched an AI agent designed to replace your customer service team. My research suggests we should be asking who's still in the loop — and what happens when no one is.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">5 min read</span>
+    <div class="article-tags">
+      <span class="tag">Trust Calibration</span>
+      <span class="tag">Agentic AI</span>
+      <span class="tag">Human Factors</span>
+      <span class="tag">Commerce</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>Meta recently launched Business Agent — an AI system designed to operate natively inside Instagram, Messenger, and WhatsApp, handling customer queries, guiding purchases, and resolving support tickets without human involvement. They're marketing it as an "infinite team": always on, infinitely scalable, never tired.</p>
+
+    <p>It's an impressive capability. It's also a near-perfect demonstration of the dynamic my dissertation was built around.</p>
+
+    <h2>What My Research Actually Found</h2>
+
+    <p>My work examined what happens when human operators collaborate with AI-assisted decision systems — specifically, how trust and understanding relate to each other under pressure. The finding I keep returning to is this: <strong>trust in AI systems and comprehension of their outputs are not the same thing, and they diverge in systematic, predictable ways.</strong></p>
+
+    <p>Under low pressure, users engaged with AI outputs critically. They questioned anomalies. Their trust tracked their understanding. Under high pressure — time constraints, high volume, stress — that relationship collapsed. Trust increased while comprehension decreased. The less time people had to evaluate the AI, the more they relied on it.</p>
+
+    <p>I called this the understanding-trust gap. It isn't a character flaw. It's a structural feature of how humans interact with AI under cognitive load.</p>
+
+    <div class="pullquote">
+      <p>"When you remove the human from the loop entirely, you don't eliminate the understanding-trust gap. You institutionalize it."</p>
+    </div>
+
+    <h2>The Loop That Isn't There</h2>
+
+    <p>Business Agent doesn't just widen this gap — it eliminates the feedback mechanism that might close it. In my research, even operators making miscalibrated trust decisions were still <em>in</em> the decision. They could observe outcomes. They could, over time, recalibrate. The loop was slow and imperfect, but it existed.</p>
+
+    <p>A fully autonomous customer-facing agent operates outside that loop. When it generates a subpar interaction — a wrong recommendation, a mishandled return, a confidence that doesn't match the facts — the customer experiences that failure. The brand absorbs it. But nobody in the organization necessarily sees it, learns from it, or updates their model of what the system is actually doing.</p>
+
+    <p>The article announcing Business Agent acknowledges this, almost in passing: "bad automated outputs actively damage consumer trust and corporate equity." That's accurate. What it doesn't reckon with is that the architecture being described makes those bad outputs systematically harder to detect and correct — because the human who would have noticed is no longer watching.</p>
+
+    <h2>Scale Doesn't Solve This</h2>
+
+    <p>The instinct is to treat this as a data problem: run enough interactions, monitor enough outcomes, and the system will self-correct. But the understanding-trust gap isn't primarily a performance problem. It's a relational one.</p>
+
+    <p>Trust between a customer and a brand is built through interactions that feel legible — where the person on the other end seems to understand what you actually need, and is accountable to getting it right. An agent that is statistically accurate but structurally unaccountable produces a different kind of relationship. Customers may not be able to articulate why an interaction felt wrong. They may simply not return.</p>
+
+    <p>This is the part that doesn't show up in accuracy benchmarks.</p>
+
+    <h2>What Would Help</h2>
+
+    <p>None of this means agentic commerce AI is inherently wrong. But the design question that matters isn't <em>how autonomous can we make it</em> — it's <em>where does the human need to remain legibly in the loop, and for what kinds of decisions?</em></p>
+
+    <p>My MICA framework research suggests the answer isn't binary. The interfaces that performed best in my N=150 study weren't the ones that maximized automation or maximized human control — they were the ones that made it clearest to operators <em>when</em> to trust the AI and when to override it. The human doesn't need to be present for every interaction. They need to be present at the right moments, with enough understanding to make that presence meaningful.</p>
+
+    <p>An "infinite team" designed without that architecture isn't more capable. It's just harder to correct when it gets things wrong.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Research Context</p>
+      <p class="footnote-text">This essay draws on findings from my doctoral dissertation, completed at the University of Oklahoma's Gallogly College of Engineering. The MURDOC vs. FACE comparative study examining the understanding-trust gap is currently under review at ACM Transactions on Computer-Human Interaction (TOCHI). The Crisis Adoption Problem concept, referenced here in the context of institutional AI deployment, is developed further in <a href="crisis-adoption-problem.html">a separate essay</a>.</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
