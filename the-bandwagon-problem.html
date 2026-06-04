@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Bandwagon Problem — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  /* CALLOUT BOX — for referencing related voices */
+  .callout {
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .callout-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .callout-body { font-size: 0.92rem; line-height: 1.8; color: #4a4540; }
+  .callout-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  .article-signoff { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); display: flex; gap: 1.5rem; align-items: center; }
+  .signoff-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #c4b8a4, #8b3a2a); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.3rem; color: var(--paper); flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  /* RELATED ESSAYS */
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background 0.2s; }
+  .related-link:hover { background: #ede7da; }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; }
+  .related-link-arrow { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research &amp; CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">The Bandwagon<br/><em>Problem</em></h1>
+  <p class="article-subtitle">Why "everyone is doing it" is the most dangerous reason to adopt AI — and the most common one.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">8 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Adoption</span>
+      <span class="tag">Organizational Behavior</span>
+      <span class="tag">Human Factors</span>
+      <span class="tag">Leadership</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>The most experienced AI practitioners in the world are sounding a consistent alarm. Not about the technology itself — but about what organizations do with it when they stop thinking carefully and start following the crowd.</p>
+
+    <p>I keep hearing a version of the same story: a leadership team watches a competitor announce an AI initiative. A board asks why the organization isn't doing the same. A vendor demo lands at exactly the right moment of institutional anxiety. And suddenly adoption is happening — not because a careful evaluation concluded it was the right move, but because the pressure to not be left behind became indistinguishable from a reason.</p>
+
+    <p>This is the Bandwagon Problem. And it is a specific, measurable, cognitively predictable failure mode — not a character flaw, not a management oversight, but a structural feature of how humans make decisions under social pressure. Understanding it as such is the first step toward doing something about it.</p>
+
+    <h2>What the Practitioners Are Seeing</h2>
+
+    <p>Sol Rashidi — the world's first Chief AI Officer, with over 200 enterprise AI deployments under her belt — has been warning about a specific version of this pattern she calls Intellectual Atrophy: the slow erosion of critical thinking that happens when organizations outsource judgment to AI rather than augmenting it. Her framing is precise: the risk isn't that AI will replace human workers. It's that humans will stop using their minds in the ways that make AI valuable in the first place.</p>
+
+    <p>Sol has also been pointing to something that complicates the bandwagon dynamic further. The AI race, she argues, isn't actually moving as fast as the marketing wants you to believe — it's moving exactly as fast as the infrastructure allows. The real bottleneck isn't talent, ideas, or funding. It's chips, power, and floor space. Organizations rushing to adopt are often chasing a capability curve that is itself constrained by physical infrastructure. The urgency is partly manufactured. Which makes the social pressure to follow even less reliable as a signal than it already was.</p>
+
+    <div class="callout">
+      <p class="callout-label">Related Voice</p>
+      <p class="callout-body">Sol Rashidi, the world's first Chief AI Officer and Senior Fellow at Harvard, argues that organizations must "make sure you outsource tasks to AI and not your critical thinking." Her Human Amplification Index™ reframes the conversation away from productivity and efficiency — toward effectiveness. <a href="https://www.solrashidi.com" target="_blank">solrashidi.com ↗</a></p>
+    </div>
+
+    <p>What Sol is observing from the practitioner side, my research documents from the empirical side. In my dissertation, I conducted a comparative study examining how human operators interacted with AI-assisted decision systems across varying time pressure conditions. The pattern that emerged from the data was consistent and unsettling: in higher time pressure conditions, measured trust in AI outputs was greater — even as measured comprehension of those outputs was lower. The data revealed a systematic divergence between how much participants understood about what the AI was doing and how much they trusted it.</p>
+
+    <p>I called this the understanding-trust gap. The Bandwagon Problem is what that gap looks like at organizational scale.</p>
+
+    <div class="pullquote">
+      <p>"Popularity is not evidence. The fact that everyone is adopting AI is not a signal that any particular AI adoption is correct."</p>
+    </div>
+
+    <h2>The Cognitive Mechanics of Following the Crowd</h2>
+
+    <p>Social proof is one of the most powerful and well-documented cognitive shortcuts humans use. When we are uncertain about the right course of action, we look to what others are doing and treat it as information. Under normal conditions this is often adaptive — the crowd really does know things the individual doesn't. But it fails catastrophically in novel, high-stakes, rapidly evolving situations where the crowd itself is operating without reliable information.</p>
+
+    <p>AI adoption in 2026 is exactly that kind of situation. The technology is moving faster than organizational understanding can track. Best practices are still being written. The full landscape of failure modes is not yet known. In this environment, watching what competitors do tells you almost nothing about whether a specific tool will work in your specific context for your specific people and workflows.</p>
+
+    <p>And yet the pressure to follow is immense. Not because leaders are reckless — most of them are trying hard to make good decisions. But because in conditions of genuine uncertainty, social proof fills the vacuum left by missing evidence. <strong>When you don't know what the right answer is, watching what everyone else does feels like a reasonable substitute for knowing.</strong> It isn't. But it feels that way, reliably, under pressure.</p>
+
+    <h2>The Compounding Effect</h2>
+
+    <p>The Bandwagon Problem compounds the Crisis Adoption Problem I wrote about earlier. In that essay I argued that the conditions that make AI adoption feel most urgent — crisis, competitive threat, institutional stress — are precisely those that make careful evaluation least likely. The bandwagon is a specific mechanism that drives that dynamic.</p>
+
+    <p>Here is how the compounding works in practice. An organization perceives competitive pressure. That pressure creates urgency. Urgency activates social proof — leaders look to what peers are doing rather than conducting independent evaluation. The vendor with the most visible market presence gets the contract. Procurement compresses. The pilot evaluation shortens or disappears. The AI system gets deployed into a workflow whose operators have never been trained to calibrate their trust in it.</p>
+
+    <p>And now the organization is not just running a poorly evaluated AI system. It is running one in an environment where the humans working with it have been implicitly told — by the speed and confidence of the adoption — that the tool is trustworthy. The understanding-trust gap was baked in before anyone used the product for the first time.</p>
+
+    <div class="pullquote">
+      <p>"The bandwagon doesn't just drive bad adoption decisions. It pre-calibrates human trust in the wrong direction before the system is ever turned on."</p>
+    </div>
+
+    <h2>What Distinguishes Thoughtful Adoption</h2>
+
+    <p>None of this is an argument against AI adoption. The tools are real, the capabilities are genuine, and organizations that refuse to engage with them entirely will face their own set of problems. The question is not whether to adopt but how to adopt in ways that keep human judgment genuinely in the loop.</p>
+
+    <p>The organizations that do this well share a few characteristics that are worth naming.</p>
+
+    <p><strong>They separate the adoption decision from the evaluation process.</strong> Deciding to explore a technology is not the same as deciding to deploy it. The best adopters hold both decisions to different standards — openness at the exploration stage, rigor at the deployment stage — and don't let the momentum of the first compress the second.</p>
+
+    <p><strong>They ask failure-mode questions before success-case questions.</strong> Most vendor evaluations focus on what the system does well. Thoughtful adopters start with how the system fails, under what conditions, and what happens to human decision-making when it does. These questions are harder to answer and less comfortable to ask. They are also the ones that matter most.</p>
+
+    <p><strong>They invest in trust calibration, not just training.</strong> Teaching people to use a system is not the same as teaching them when to trust it and when to question it. The latter is more difficult, takes longer, and pays off enormously in high-stakes operational environments. Sol's frame of measuring effectiveness rather than just productivity is the right one here — you need to know whether people are making better decisions with the tool, not just faster ones.</p>
+
+    <p><strong>They treat "everyone is doing it" as a flag, not a reason.</strong> When the primary argument for adoption is competitive pressure or peer behavior, that is a signal to slow down and ask harder questions — not a justification for moving forward.</p>
+
+    <h2>The Harder Conversation</h2>
+
+    <p>For those of us who work inside organizations where this pattern is playing out in real time, the challenge is translating this into a conversation that leadership can actually hear. "We're moving too fast" reads as resistance. "We need to protect our investment by calibrating human trust before deployment" reads as risk management. The second framing is more likely to open a door.</p>
+
+    <p>The research helps too. The understanding-trust gap is not a theory — it is a documented, measurable phenomenon with an N=150 empirical study behind it. The practitioners who are sounding the alarm are not being cautious for caution's sake. They have seen what happens when adoption outruns evaluation at enterprise scale, across hundreds of deployments, in organizations that had every reason to think they were doing it right. As Sol puts it: the people reacting to the hype are always two steps behind the people reading the signals.</p>
+
+    <p>Popularity is not evidence. The fact that everyone is adopting AI is not a signal that any particular AI adoption is correct. And the organizations that are going to look back on this moment with the most satisfaction are not the ones that moved fastest — they are the ones that moved with their eyes open, their humans genuinely in the loop, and their trust properly calibrated before anything was ever turned on.</p>
+
+    <p>That is what AI done right actually looks like. And it requires resisting the bandwagon — not because the wagon is going nowhere, but because the road matters as much as the destination.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Research Context</p>
+      <p class="footnote-text">This essay extends my earlier piece, <em>The Crisis Adoption Problem</em>, and draws on findings from my doctoral dissertation completed at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab). The paper <em>Interactive Features and Trust in AI-Assisted Camouflaged Object Detection: Evidence for the Understanding-Trust Gap</em> is currently under review at ACM Transactions on Computer-Human Interaction (TOCHI). Sol's work on the Human Amplification Index™ and Intellectual Atrophy can be found at <a href="https://www.solrashidi.com" target="_blank">solrashidi.com</a>.</p>
+    </div>
+
+    <div class="related-block">
+      <p class="related-label">Related Essay</p>
+      <a href="crisis-adoption-problem.html" class="related-link">
+        <span class="related-link-title">The Crisis Adoption Problem</span>
+        <span class="related-link-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
