@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Day the Bill Arrives — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+
+  .companion-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--rule); color: var(--muted);
+    padding: 0.35rem 0.85rem; margin-bottom: 1.5rem;
+  }
+  .companion-badge a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+  .companion-badge a:hover { opacity: 0.7; }
+
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .case-block {
+    margin: 3rem 0;
+    border: 1px solid var(--rule);
+    padding: 2rem 2.5rem;
+  }
+  .case-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .case-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.75rem; }
+  .case-body { font-size: 0.9rem; line-height: 1.8; color: #4a4540; margin-bottom: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--muted); border-bottom: 1px dotted var(--muted); }
+
+  .article-signoff { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); display: flex; gap: 1.5rem; align-items: center; }
+  .signoff-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #c4b8a4, #8b3a2a); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.3rem; color: var(--paper); flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research &amp; CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+
+  <div class="companion-badge">
+    ◈ Companion to: <a href="crisis-adoption-problem.html">The Crisis Adoption Problem</a>
+  </div>
+
+  <h1 class="article-title">The Day<br/><em>the Bill Arrives</em></h1>
+  <p class="article-subtitle">What happens after the crisis adoption — when the tab comes due and no one has established what any of it was worth.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">6 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Adoption</span>
+      <span class="tag">Cost &amp; ROI</span>
+      <span class="tag">Human Factors</span>
+      <span class="tag">Organizations</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>A few weeks ago, news emerged that Walmart had begun limiting employees' use of an internal AI assistant called Code Puppy. Demands placed on the large language model backing the tool had come in higher than expected — significantly higher. With roughly 2.1 million employees, even modest per-person usage creates costs that scale in ways that are very difficult to anticipate in advance. Token limits are now in place. Guidance has been issued about choosing the right AI tool for each task. ROI metrics are being established — retroactively.</p>
+
+    <p>I want to be careful not to overread a single corporate policy adjustment. Walmart is a sophisticated organization, AI adoption is genuinely complex, and cost controls are a normal part of any technology rollout at scale. None of this is evidence of failure in any simple sense.</p>
+
+    <p>But the sequence of events is worth sitting with. Deploy broadly. Discover the costs. Build the evaluation framework. That ordering — that specific reversal of what deliberate adoption would look like — is exactly what I would have predicted from the dynamics I described in <a href="crisis-adoption-problem.html">The Crisis Adoption Problem</a>. And seeing it show up in the real world, at this scale, feels worth naming.</p>
+
+    <h2>The Companion Phenomenon</h2>
+
+    <p>The Crisis Adoption Problem describes the front end of a pattern: organizations reach for AI tools fastest under conditions of urgency or competitive pressure — exactly when their capacity to evaluate those tools carefully is most compromised. Trust outruns understanding. Adoption outruns calibration.</p>
+
+    <p>What Walmart is navigating now is the back end of that same pattern. I think of it as the companion phenomenon: <strong>the day the bill arrives.</strong></p>
+
+    <p>It is not simply a financial bill, though the financial dimension is real and increasingly impossible to ignore. The deeper bill is an accountability one. When adoption happens under pressure, the questions that get deferred aren't trivial. They are the questions that make a tool legible — that allow an organization to understand what it has, what it costs, what it produces, and whether the relationship between those things is defensible. When the pressure subsides, or when the invoice lands, those questions come back. And they arrive in a context where the tool is already embedded, already habituated, already load-bearing in workflows that were not designed with its costs in mind.</p>
+
+    <div class="pullquote">
+      <p>"The questions that get deferred in a crisis adoption aren't trivial. They are the questions that make a tool legible."</p>
+    </div>
+
+    <h2>Why the Bill Is Hard to Read</h2>
+
+    <p>There is a particular difficulty in the reckoning that follows rushed adoption: the costs are suddenly visible, but the value remains murky.</p>
+
+    <p>This is not an accident. It is structural. When adoption happens under urgency, what gets measured is the urgency-reduction — the feeling that something is being done, that the organization is not falling behind, that a problem is being addressed. That is a real value, but it is not a measurable one in any conventional sense. It doesn't show up in a dashboard. It can't be compared to a token cost.</p>
+
+    <p>And so when the bill arrives, organizations find themselves holding a clear number on one side of the ledger and a diffuse, hard-to-articulate set of benefits on the other. The asymmetry is uncomfortable. It is also the direct consequence of adopting without establishing, in advance, what "working" would look like.</p>
+
+    <p>Walmart's response — issuing guidance, setting limits, building metrics — is the right one. But notice what it means: the organization is now constructing the evaluation framework it would ideally have built before deployment. The sequence has been inverted. That is recoverable. It is always recoverable, at some cost. The question is what it costs, and whether the costs compound before the reckoning comes.</p>
+
+    <div class="case-block">
+      <p class="case-label">Parallel Case · June 2026</p>
+      <p class="case-title">Uber's AI Budget, Exhausted by April</p>
+      <p class="case-body">Walmart is not alone. Uber recently disclosed that it had exhausted its entire 2026 AI spend budget by April — four months into the fiscal year. Both cases reflect the same underlying dynamic: AI costs, particularly as the industry transitions from flat-rate subscriptions to pay-per-use inference pricing, are far easier to underestimate than to overestimate. The fixed-price era created habits of usage that the usage-priced era will force organizations to re-examine.</p>
+    </div>
+
+    <h2>A Pricing Shift That Changes Everything</h2>
+
+    <p>Part of what makes this moment particularly interesting is that the AI industry is itself in transition. The early years of broad enterprise AI adoption were underwritten, in significant part, by subscription pricing models that decoupled cost from usage. A flat monthly fee creates a very different relationship to a tool than a per-token charge. The former rewards experimentation and volume; the latter demands discipline and selectivity.</p>
+
+    <p>As inference pricing has moved toward usage-based models, the economics of "deploy broadly and figure it out later" have shifted underneath organizations that built their adoption strategies in a different pricing environment. The habits formed under one cost structure are now meeting a different one. And the reckoning is arriving faster than many anticipated — not because the tools have failed, but because the assumptions embedded in the adoption strategy were never interrogated under the conditions that now apply.</p>
+
+    <p>This is another form of the understanding-trust gap I documented in my dissertation research. There, the gap was between how much individual operators understood about an AI system's outputs and how much they trusted those outputs. Here, the gap is organizational: between how deeply institutions understood the economics of the tools they were deploying and how confidently they deployed them. The shape is the same. The scale is larger.</p>
+
+    <div class="pullquote">
+      <p>"The habits formed under one cost structure are now meeting a different one — faster than many anticipated."</p>
+    </div>
+
+    <h2>What This Is Not</h2>
+
+    <p>I want to be precise, again, about what I am and am not arguing. This is not a case that AI tools are overpriced, oversold, or not worth the investment. Many of them are worth it. The tools Walmart deployed to its employees may well produce genuine value that more than justifies their cost — once someone builds the framework to measure it.</p>
+
+    <p>The issue is not the tools. The issue is the sequence. Deploy, then evaluate, then calibrate — under urgency, that sequence feels like the only available one. But it has consequences that arrive later, and those consequences are predictable. The Crisis Adoption Problem is not just about what happens in the moment of adoption. It is about what gets set up to happen down the road.</p>
+
+    <p>Walmart is now doing the work that would have been easier, and cheaper, to do first. That is not a condemnation. It is simply a description of what the back end of crisis adoption looks like — measured, methodical, and arrived at later than it might have been.</p>
+
+    <h2>We'll Have to See</h2>
+
+    <p>The honest ending to this story is that we do not yet know what it costs when the bill arrives at scale. Walmart's adjustment may prove to be a minor recalibration — a sensible tightening of usage policy that produces better ROI metrics and a more disciplined relationship to the tools. That is a genuinely good outcome, and it is available to organizations willing to do the harder work of evaluation after the fact.</p>
+
+    <p>Or the reckoning may prove more consequential: tools that are deeply embedded in workflows but whose value cannot be clearly articulated, costs that exceed what the organization can justify, trust relationships with AI systems that were formed under urgency and are now very difficult to renegotiate. That is a harder outcome, and the conditions for it are present whenever adoption happens faster than calibration.</p>
+
+    <p>What I am confident of is this: the bill always arrives. The only variable is whether the organization has built the tools to read it when it does.</p>
+
+    <p>We'll have to see what happens when more of them land.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Sources &amp; Research Context</p>
+      <p class="footnote-text">The Walmart and Uber details cited here draw on reporting from <a href="https://www.artificialintelligence-news.com/news/walmart-limits-ai-use-as-workflows-meet-the-realities-of-the-balance-sheet/" target="_blank">AI News, June 2026</a>. This essay is a companion to <a href="crisis-adoption-problem.html">The Crisis Adoption Problem</a> and draws on the same theoretical foundation: findings from my doctoral dissertation on human-AI trust calibration at the University of Oklahoma's Gallogly College of Engineering, under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab). The understanding-trust gap and its organizational analogs are described in the paper <em>Interactive Features and Trust in AI-Assisted Camouflaged Object Detection: Evidence for the Understanding-Trust Gap</em>, currently under review at ACM TOCHI.</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
