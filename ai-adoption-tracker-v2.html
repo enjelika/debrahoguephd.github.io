@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -152,7 +153,21 @@
   .case-relevance { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--muted); font-style: italic; padding-top: 0.5rem; border-top: 1px dotted var(--rule); }
   .empty-state { grid-column: 1 / -1; padding: 4rem 2rem; text-align: center; font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--muted); }
 
-  /* STREAM LOG */
+  /* BEESWARM */
+  .beeswarm-wrap { background: var(--paper); border: 1px solid var(--rule); border-top: none; padding: 1.75rem 2rem 2rem; }
+  .beeswarm-title { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.25rem; }
+  .beeswarm-sub { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
+  #beeswarm { width: 100%; overflow: visible; }
+  #beeswarm .node { cursor: pointer; transition: opacity 0.2s; }
+  #beeswarm .node:hover { opacity: 0.85; }
+  #beeswarm .node.dimmed { opacity: 0.18; }
+  #beeswarm .node.highlighted circle { stroke: var(--ink); stroke-width: 2.5px; }
+  #beeswarm .axis-label { font-family: 'DM Mono', monospace; font-size: 9px; fill: #7a7065; letter-spacing: 0.1em; text-transform: uppercase; }
+  #beeswarm .outcome-label { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 13px; fill: #c8b89a; font-style: italic; }
+  #beeswarm .band-bg { fill: transparent; }
+  #beeswarm .band-bg.negative { fill: rgba(139,58,42,0.04); }
+  #beeswarm .band-bg.mixed { fill: rgba(160,120,64,0.04); }
+  #beeswarm .axis-tick { stroke: var(--rule); stroke-width: 1px; }
   .stream-log {
     display: none; margin-top: 2rem; border: 1px solid var(--rule); background: #f0ebe0;
     padding: 1.25rem 1.5rem; max-height: 120px; overflow-y: auto;
@@ -253,6 +268,14 @@
       <span class="legend-item"><span class="legend-dot" style="background:var(--ink);opacity:0.5"></span>Moderate</span>
       <span class="legend-item"><span class="legend-dot" style="background:var(--ink);opacity:0.2"></span>Thorough</span>
     </div>
+
+    <!-- D3 BEESWARM -->
+    <div class="beeswarm-wrap">
+      <div class="beeswarm-title">Outcome Distribution — Beeswarm</div>
+      <div class="beeswarm-sub">Each node is a case. Position on x-axis shows outcome. Color shows trigger type. Opacity shows evaluation depth. Click any node to highlight the case below.</div>
+      <svg id="beeswarm"></svg>
+    </div>
+
   </div>
 
   <div class="stream-log" id="streamLog"></div>
@@ -519,6 +542,7 @@ function highlightCase(idx) {
   highlightedIndex = idx;
   drawMatrix(allCases);
   drawTimeline(allCases);
+  updateBeeswarmHighlight(idx);
   document.querySelectorAll('.case-card').forEach(el => el.classList.remove('highlighted'));
   const cards = document.querySelectorAll('.case-card');
   if (cards[idx]) {
@@ -527,11 +551,142 @@ function highlightCase(idx) {
   }
 }
 
+// ── D3 BEESWARM ──────────────────────────────────────────────────────────
+function drawBeeswarm(cases) {
+  const container = document.getElementById('beeswarm').parentElement;
+  const W = container.clientWidth - 64; // account for padding
+  const H = 220;
+  const PAD = { top: 30, right: 40, bottom: 50, left: 40 };
+  const R = 11;
+
+  d3.select('#beeswarm').selectAll('*').remove();
+
+  const svg = d3.select('#beeswarm')
+    .attr('width', W)
+    .attr('height', H)
+    .attr('viewBox', `0 0 ${W} ${H}`);
+
+  const OUTCOME_POSITIONS = { positive: 0, pending: 1, mixed: 2, negative: 3 };
+  const OUTCOME_LABELS = ['Positive', 'Pending', 'Mixed', 'Negative'];
+  const pw = W - PAD.left - PAD.right;
+
+  const xScale = d3.scalePoint()
+    .domain(['positive', 'pending', 'mixed', 'negative'])
+    .range([PAD.left, PAD.left + pw])
+    .padding(0.5);
+
+  // Background bands for mixed and negative
+  ['mixed', 'negative'].forEach(o => {
+    const bx = xScale(o);
+    svg.append('rect')
+      .attr('class', `band-bg ${o}`)
+      .attr('x', bx - pw / 8)
+      .attr('y', PAD.top)
+      .attr('width', pw / 4)
+      .attr('height', H - PAD.top - PAD.bottom);
+  });
+
+  // Axis line
+  svg.append('line')
+    .attr('class', 'axis-tick')
+    .attr('x1', PAD.left).attr('x2', PAD.left + pw)
+    .attr('y1', H - PAD.bottom).attr('y2', H - PAD.bottom);
+
+  // Outcome labels
+  OUTCOME_LABELS.forEach((label, i) => {
+    const outcomes = ['positive', 'pending', 'mixed', 'negative'];
+    svg.append('text')
+      .attr('class', 'outcome-label')
+      .attr('x', xScale(outcomes[i]))
+      .attr('y', H - PAD.bottom + 22)
+      .attr('text-anchor', 'middle')
+      .text(label);
+  });
+
+  // Axis title
+  svg.append('text')
+    .attr('class', 'axis-label')
+    .attr('x', PAD.left + pw / 2)
+    .attr('y', H - 4)
+    .attr('text-anchor', 'middle')
+    .text('← Better outcome · Outcome severity · Worse outcome →');
+
+  // Force simulation for beeswarm
+  const midY = PAD.top + (H - PAD.top - PAD.bottom) / 2;
+
+  const nodes = cases.map((c, idx) => ({
+    ...c,
+    idx,
+    targetX: xScale(c.outcome) || xScale('pending'),
+    x: xScale(c.outcome) || xScale('pending'),
+    y: midY
+  }));
+
+  const sim = d3.forceSimulation(nodes)
+    .force('x', d3.forceX(d => d.targetX).strength(0.9))
+    .force('y', d3.forceY(midY).strength(0.3))
+    .force('collide', d3.forceCollide(R + 2.5))
+    .stop();
+
+  for (let i = 0; i < 200; i++) sim.tick();
+
+  // Clamp nodes within bounds
+  nodes.forEach(d => {
+    d.y = Math.max(PAD.top + R, Math.min(H - PAD.bottom - R, d.y));
+  });
+
+  // Draw nodes
+  const nodeGroups = svg.selectAll('.node')
+    .data(nodes)
+    .enter()
+    .append('g')
+    .attr('class', d => `node${highlightedIndex === d.idx ? ' highlighted' : ''}`)
+    .attr('transform', d => `translate(${d.x}, ${d.y})`)
+    .style('opacity', 0)
+    .on('mouseenter', function(event, d) {
+      showTooltip(event, `<strong>${escHtml(d.org)}</strong>${d.date}<br/>${d.trigger} · ${d.outcome}<br/><em style="font-style:italic;opacity:0.8">${escHtml(d.relevance ? d.relevance.slice(0, 80) + '…' : '')}</em>`);
+      // Dim others
+      svg.selectAll('.node').classed('dimmed', n => n.idx !== d.idx);
+    })
+    .on('mousemove', positionTooltip)
+    .on('mouseleave', function() {
+      hideTooltip();
+      svg.selectAll('.node').classed('dimmed', false);
+    })
+    .on('click', (event, d) => highlightCase(d.idx));
+
+  nodeGroups.append('circle')
+    .attr('r', R)
+    .attr('fill', d => TRIGGER_COLORS[d.trigger] || '#7a7065')
+    .attr('fill-opacity', d => EVAL_ALPHA[d.evaluationDepth] || 0.7)
+    .attr('stroke', d => highlightedIndex === d.idx ? '#1a1612' : 'none')
+    .attr('stroke-width', 2.5);
+
+  // Animate in
+  nodeGroups.transition()
+    .duration(500)
+    .delay((d, i) => i * 60)
+    .style('opacity', 1);
+
+  // Store reference for highlight updates
+  window._beeswarmSvg = svg;
+  window._beeswarmNodes = nodes;
+}
+
+function updateBeeswarmHighlight(idx) {
+  if (!window._beeswarmSvg) return;
+  window._beeswarmSvg.selectAll('.node')
+    .classed('highlighted', d => d.idx === idx)
+    .select('circle')
+    .attr('stroke', d => d.idx === idx ? '#1a1612' : 'none');
+}
+
 function drawVisualizations(cases) {
   document.getElementById('vizSection').classList.add('visible');
   setTimeout(() => {
     drawMatrix(cases);
     drawTimeline(cases);
+    drawBeeswarm(cases);
   }, 50);
 }
 
@@ -687,7 +842,7 @@ function escHtml(str) {
 }
 
 window.addEventListener('resize', () => {
-  if (allCases.length > 0) { drawMatrix(allCases); drawTimeline(allCases); }
+  if (allCases.length > 0) { drawMatrix(allCases); drawTimeline(allCases); drawBeeswarm(allCases); }
 });
 </script>
 </body>
