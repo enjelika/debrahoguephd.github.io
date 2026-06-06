@@ -70,6 +70,9 @@
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
   .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(139,58,42,0.06); }
   .last-run { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); margin-left: auto; }
+  .elapsed { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); display: none; align-items: center; gap: 0.4rem; }
+  .elapsed.visible { display: flex; }
+  .elapsed-time { color: var(--ink); font-weight: 400; min-width: 2.8rem; }
 
   /* STATUS */
   .status-bar {
@@ -220,6 +223,7 @@
       <span id="btnIcon">◈</span>
       <span id="btnText">Search for Cases</span>
     </button>
+    <div class="elapsed" id="elapsed">◷ <span class="elapsed-time" id="elapsedTime">0:00</span></div>
     <div class="filter-group" id="filterGroup" style="display:none;">
       <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
       <button class="filter-btn" onclick="filterCards('competitive', this)">Competitive</button>
@@ -291,6 +295,31 @@
 let allCases = [];
 let activeFilter = 'all';
 let highlightedIndex = -1;
+let timerInterval = null;
+let timerStart = null;
+
+function startTimer() {
+  timerStart = Date.now();
+  const el = document.getElementById('elapsed');
+  const timeEl = document.getElementById('elapsedTime');
+  el.classList.add('visible');
+  timeEl.textContent = '0:00';
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - timerStart) / 1000);
+    const m = Math.floor(elapsed / 60);
+    const s = elapsed % 60;
+    timeEl.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  const elapsed = timerStart ? Math.floor((Date.now() - timerStart) / 1000) : 0;
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  document.getElementById('elapsedTime').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
 const TRIGGER_COLORS = { competitive: '#8b3a2a', crisis: '#c4614e', social: '#a07840', market: '#5a7a6a' };
 const TRIGGER_ORDER = ['competitive', 'market', 'social', 'crisis'];
 const OUTCOME_ORDER = ['positive', 'pending', 'mixed', 'negative'];
@@ -700,10 +729,12 @@ async function runSearch() {
   document.getElementById('statsRow').classList.remove('visible');
   document.getElementById('filterGroup').style.display = 'none';
   document.getElementById('vizSection').classList.remove('visible');
+  document.getElementById('elapsed').classList.remove('visible');
   allCases = []; highlightedIndex = -1;
 
   setStatus('Initiating live web search for AI adoption cases...');
   log('Connecting to Claude with web search...');
+  startTimer();
 
   const systemPrompt = `You are a research assistant for Dr. Debra Hogue, a human-AI collaboration researcher whose dissertation documented the "understanding-trust gap" — the finding that trust in AI systems and comprehension of their outputs diverge systematically under pressure. She studies a phenomenon called the "Crisis Adoption Problem": organizations adopt AI fastest under urgency or competitive pressure, exactly when careful evaluation is least likely.
 
@@ -770,11 +801,13 @@ Return 6-8 cases. Prioritize recency and specificity. Only include cases with ve
     drawVisualizations(allCases);
 
     document.getElementById('filterGroup').style.display = 'flex';
-    document.getElementById('lastRun').textContent = `Last updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    const finalTime = stopTimer();
+    document.getElementById('lastRun').textContent = `Last updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · ${finalTime}`;
     setStatus('', false);
     setTimeout(() => document.getElementById('streamLog').classList.remove('visible'), 3000);
 
   } catch (err) {
+    stopTimer();
     log('Error: ' + err.message);
     setStatus('Search failed — see log below', true);
     document.getElementById('caseGrid').innerHTML = `<div class="empty-state">Something went wrong. Please try again.</div>`;
