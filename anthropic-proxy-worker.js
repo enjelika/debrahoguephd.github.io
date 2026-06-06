@@ -2,17 +2,20 @@
 // Deploy at: Workers & Pages → Create Worker → paste this code
 // Then: Settings → Variables → add ANTHROPIC_API_KEY as a secret
 
-const ALLOWED_ORIGIN = 'https://debrahogue.phd';
+const ALLOWED_ORIGINS = ['https://debrahogue.phd', 'https://www.debrahogue.phd'];
 const ANTHROPIC_API = 'https://api.anthropic.com';
 
 export default {
   async fetch(request, env) {
 
+    const origin = request.headers.get('Origin') || '';
+    const allowed = ALLOWED_ORIGINS.includes(origin);
+
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+          'Access-Control-Allow-Origin': allowed ? origin : 'null',
           'Access-Control-Allow-Methods': 'POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Max-Age': '86400',
@@ -21,8 +24,7 @@ export default {
     }
 
     // Only allow POST from your domain
-    const origin = request.headers.get('Origin');
-    if (request.method !== 'POST' || origin !== ALLOWED_ORIGIN) {
+    if (request.method !== 'POST' || !allowed) {
       return new Response('Forbidden', { status: 403 });
     }
 
@@ -46,7 +48,7 @@ export default {
         status: apiResponse.status,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+          'Access-Control-Allow-Origin': origin,
         }
       });
 
@@ -55,7 +57,7 @@ export default {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+          'Access-Control-Allow-Origin': origin,
         }
       });
     }
