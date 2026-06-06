@@ -59,9 +59,10 @@
   .book-link { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; display: inline-block; margin-top: 0.25rem; }
   .book-link:hover { opacity: 0.7; }
 
- /* COMMUNITY */
+  /* COMMUNITY */
   .community-block { border: 1px solid var(--rule); padding: 3rem; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; margin-bottom: 2rem; transition: background 0.2s; }
   .community-block:hover { background: #ede7da; }
+  .community-block .community-img { width: 100%; height: auto; display: block; }
   .community-icon { font-size: 3rem; line-height: 1; }
   .community-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
   .community-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.75rem; }
@@ -141,14 +142,14 @@
         <p class="book-meta">Hardcover &middot; Demo copy printed &middot; Publisher: TBD</p>
       </div>
 
-     <div class="book-card">
+      <div class="book-card">
         <img src="images/upward_spiral_cover.png" alt="The Upward Spiral: Rising Through Adversity" style="width:100%;max-width:280px;height:auto;object-fit:contain;display:block;border:1px solid var(--rule);"/>
         <span class="book-tag progress">In Progress</span>
         <h3 class="book-title">The Upward Spiral</h3>
         <p class="book-subtitle">Rising Through Adversity</p>
         <p class="book-role">Written by Debra Hogue and Yolanda Faye Perry &middot; Foreword by <a href="https://www.aquilahahmad.com/about/" target="_blank" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);">Aquilah Ahmad</a></p>
         <p class="book-desc">A Christian nonfiction book for professional women drawing on our shared experiences navigating toxic work environments and the faith that carried us through. Think Chicken Soup for the Soul meets workplace survival guide with a strong faith foundation.</p>
-        <p class="book-meta">Hardcover & Paperback &middot; Publisher: TBD</p>
+        <p class="book-meta">Hardcover &amp; Paperback &middot; Publisher: TBD</p>
       </div>
 
     </div>
@@ -197,7 +198,7 @@
 
     <div class="community-block">
       <div>
-        <img src="images/PALS_Logo.png" alt="PALS — Parents And Lutheran Schools" style="width:100%;max-width:160px;height:auto;display:block;"/>
+        <img class="community-img" src="images/PALS_Logo.png" alt="PALS — Parents And Lutheran Schools"/>
       </div>
       <div>
         <p class="community-label">PALS Association · Moore, Oklahoma</p>
@@ -215,7 +216,7 @@
 
     <div class="community-block">
       <div>
-        <img src="images/stem_day.jpg" alt="STEM Day at SJLS — student at flight simulator" style="width:100%;max-width:240px;height:auto;display:block;border:1px solid var(--rule);"/>
+        <img class="community-img" src="images/stem_day.jpg" alt="STEM Day at SJLS — student at flight simulator" style="border:1px solid var(--rule);"/>
       </div>
       <div>
         <p class="community-label">STEM Day · St. John's Lutheran School · 2025 &amp; 2026</p>
@@ -229,7 +230,7 @@
 
     <div class="community-block">
       <div>
-        <img src="images/cancer_walk.png" alt="Debra Hogue and Marley — ACS 31-Mile Dog Walk Certificate of Appreciation" style="width:100%;max-width:240px;height:auto;display:block;border:1px solid var(--rule);"/>
+        <img class="community-img" src="images/cancer_walk.png" alt="Debra Hogue and Marley — ACS 31-Mile Dog Walk Certificate of Appreciation" style="border:1px solid var(--rule);"/>
       </div>
       <div>
         <p class="community-label">American Cancer Society · March 2026</p>
@@ -241,7 +242,7 @@
 
     <div class="community-block">
       <div>
-        <img src="images/uwf_logo.jpg" alt="United Women in Faith" style="width:100%;max-width:240px;height:auto;display:block;"/>
+        <img class="community-img" src="images/uwf_logo.jpg" alt="United Women in Faith"/>
       </div>
       <div>
         <p class="community-label">Faith Community</p>
@@ -252,7 +253,6 @@
     </div>
 
   </section>
-
 
 </div>
 
