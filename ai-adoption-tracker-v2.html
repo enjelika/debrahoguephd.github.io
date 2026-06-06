@@ -327,9 +327,8 @@ Return 6-8 cases. Prioritize recency and specificity. Only include cases with ve
   try {
     log('Sending search request with web access enabled...');
 
-    // ← Replace YOUR_WORKER with your actual Worker subdomain
-    // e.g. https://anthropic-proxy.yourname.workers.dev
-    const WORKER_URL = 'https://YOUR_WORKER.workers.dev';
+    // Cloudflare Worker proxy
+    const WORKER_URL = 'https://anthropic-proxy.debra-hogue1981.workers.dev';
 
     const response = await fetch(WORKER_URL, {
       method: 'POST',
