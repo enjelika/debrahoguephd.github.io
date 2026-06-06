@@ -15,20 +15,16 @@
     --muted: #7a7065; --mono: 'DM Mono', monospace;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Outfit', sans-serif;
-    --card-bg: #ede7da; --card-border: #d4c9b5;
+    --card-bg: #ede7da;
+    --c-competitive: #8b3a2a; --c-crisis: #c4614e;
+    --c-social: #a07840; --c-market: #5a7a6a;
   }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--paper); color: var(--ink);
-    font-family: var(--sans); font-weight: 300; overflow-x: hidden;
-    min-height: 100vh;
-  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; min-height: 100vh; }
   body::before {
     content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.35;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   }
-
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
@@ -39,40 +35,31 @@
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
-
-  /* LAYOUT */
   .page-wrap { max-width: 960px; margin: 0 auto; padding: 8rem 3rem 6rem; }
-
-  /* HEADER */
   .page-header { margin-bottom: 3rem; }
   .page-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
   .page-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.1; margin-bottom: 1rem; }
   .page-title em { font-style: italic; color: var(--accent); }
   .page-desc { font-size: 1rem; line-height: 1.8; color: var(--muted); max-width: 580px; margin-bottom: 2rem; }
   .page-desc a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
-
   .methodology-note {
     display: inline-flex; gap: 0.6rem; align-items: flex-start;
     background: var(--card-bg); border: 1px solid var(--rule);
-    padding: 1rem 1.25rem; font-size: 0.82rem; line-height: 1.6; color: var(--muted);
-    max-width: 620px;
+    padding: 1rem 1.25rem; font-size: 0.82rem; line-height: 1.6; color: var(--muted); max-width: 620px;
   }
   .methodology-note strong { color: var(--ink); font-weight: 500; }
 
   /* CONTROLS */
   .controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
-
   .search-btn {
     display: inline-flex; align-items: center; gap: 0.6rem;
-    background: var(--accent); color: var(--paper);
-    border: none; cursor: pointer; padding: 0.75rem 1.75rem;
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-    transition: background 0.2s, transform 0.1s;
+    background: var(--accent); color: var(--paper); border: none; cursor: pointer;
+    padding: 0.75rem 1.75rem; font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, transform 0.1s;
   }
   .search-btn:hover:not(:disabled) { background: var(--accent-light); }
   .search-btn:active:not(:disabled) { transform: scale(0.98); }
   .search-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
   .filter-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .filter-btn {
     font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -81,105 +68,107 @@
   }
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
   .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(139,58,42,0.06); }
-
   .last-run { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); margin-left: auto; }
 
-  /* STATUS BAR */
+  /* STATUS */
   .status-bar {
     display: none; align-items: center; gap: 1rem;
     padding: 1rem 1.25rem; background: var(--card-bg); border: 1px solid var(--rule);
-    margin-bottom: 1.5rem; font-family: var(--mono); font-size: 0.68rem;
-    letter-spacing: 0.08em; color: var(--muted);
+    margin-bottom: 1.5rem; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--muted);
   }
   .status-bar.visible { display: flex; }
-  .spinner {
-    width: 14px; height: 14px; border: 2px solid var(--rule);
-    border-top-color: var(--accent); border-radius: 50%;
-    animation: spin 0.8s linear infinite; flex-shrink: 0;
-  }
+  .spinner { width: 14px; height: 14px; border: 2px solid var(--rule); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* STATS ROW */
-  .stats-row {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-    background: var(--rule); border: 1px solid var(--rule);
-    margin-bottom: 2rem; display: none;
-  }
+  .stats-row { display: none; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 2rem; }
   .stats-row.visible { display: grid; }
-  .stat-cell {
-    background: var(--paper); padding: 1.25rem 1.5rem;
-  }
+  .stat-cell { background: var(--paper); padding: 1.25rem 1.5rem; }
   .stat-value { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
-  .stat-value em { font-style: italic; color: var(--accent); }
   .stat-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* VISUALIZATIONS */
+  .viz-section { display: none; margin-bottom: 3rem; }
+  .viz-section.visible { display: block; }
+  .viz-section-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+  .viz-section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .viz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 1px; }
+
+  /* MATRIX */
+  .matrix-wrap { background: var(--paper); padding: 1.75rem 2rem; }
+  .matrix-title { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.4rem; }
+  .matrix-sub { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.25rem; }
+  #matrixCanvas { width: 100%; cursor: crosshair; }
+
+  /* TIMELINE */
+  .timeline-wrap { background: var(--paper); padding: 1.75rem 2rem; }
+  .timeline-title { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.4rem; }
+  .timeline-sub { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.25rem; }
+  #timelineCanvas { width: 100%; cursor: crosshair; }
+
+  /* TOOLTIP */
+  .viz-tooltip {
+    position: fixed; z-index: 200; pointer-events: none;
+    background: var(--ink); color: var(--paper);
+    padding: 0.6rem 0.9rem; max-width: 240px;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; line-height: 1.6;
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .viz-tooltip.visible { opacity: 1; }
+  .viz-tooltip strong { font-weight: 500; display: block; margin-bottom: 0.25rem; font-family: var(--serif); font-size: 0.9rem; letter-spacing: 0; }
+
+  /* VIZ LEGEND */
+  .viz-legend { background: var(--paper); border-top: 1px solid var(--rule); padding: 1rem 2rem; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
   /* CASE GRID */
   .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-
   .case-card {
     background: var(--paper); padding: 1.75rem 2rem;
-    opacity: 0; transform: translateY(8px);
-    animation: cardIn 0.4s forwards;
+    opacity: 0; transform: translateY(8px); animation: cardIn 0.4s forwards;
     display: flex; flex-direction: column; gap: 0.75rem;
+    cursor: pointer; transition: background 0.15s;
   }
+  .case-card:hover { background: var(--card-bg); }
+  .case-card.highlighted { background: #ede7da; outline: 2px solid var(--accent); outline-offset: -2px; }
   @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
-
   .case-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
   .case-org { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; line-height: 1.2; }
   .case-date { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; flex-shrink: 0; margin-top: 0.2rem; }
-
   .case-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .case-tag {
-    font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.2rem 0.55rem; border: 1px solid var(--rule); color: var(--muted);
-  }
+  .case-tag { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid var(--rule); color: var(--muted); }
   .case-tag.trigger { border-color: #c4614e; color: #c4614e; }
   .case-tag.outcome-negative { border-color: var(--accent); color: var(--accent); }
   .case-tag.outcome-mixed { border-color: #a07840; color: #a07840; }
   .case-tag.outcome-pending { border-color: var(--muted); color: var(--muted); }
-
+  .case-tag.outcome-positive { border-color: #5a7a6a; color: #5a7a6a; }
   .case-summary { font-size: 0.88rem; line-height: 1.75; color: #3a3530; }
-
   .case-meta { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
   .case-meta-row { display: flex; gap: 0.75rem; align-items: baseline; }
   .case-meta-label { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); min-width: 80px; flex-shrink: 0; }
   .case-meta-value { font-size: 0.82rem; color: var(--ink); line-height: 1.4; }
-
-  .case-relevance {
-    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em;
-    color: var(--muted); font-style: italic; padding-top: 0.5rem;
-    border-top: 1px dotted var(--rule);
-  }
-
-  /* EMPTY / ERROR STATE */
-  .empty-state {
-    grid-column: 1 / -1; padding: 4rem 2rem; text-align: center;
-    font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--muted);
-  }
+  .case-relevance { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--muted); font-style: italic; padding-top: 0.5rem; border-top: 1px dotted var(--rule); }
+  .empty-state { grid-column: 1 / -1; padding: 4rem 2rem; text-align: center; font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--muted); }
 
   /* STREAM LOG */
   .stream-log {
-    display: none; margin-top: 2rem;
-    border: 1px solid var(--rule); background: #f0ebe0;
+    display: none; margin-top: 2rem; border: 1px solid var(--rule); background: #f0ebe0;
     padding: 1.25rem 1.5rem; max-height: 120px; overflow-y: auto;
-    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em;
-    color: var(--muted); line-height: 1.8;
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.8;
   }
   .stream-log.visible { display: block; }
   .stream-log p { margin: 0; }
   .stream-log p.accent { color: var(--accent); }
 
-  footer {
-    background: var(--ink); color: rgba(245,240,232,0.4);
-    padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem;
-  }
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
 
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
     .page-wrap { padding: 7rem 1.5rem 4rem; }
-    .case-grid { grid-template-columns: 1fr; }
+    .case-grid, .viz-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: 1fr 1fr; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
@@ -198,14 +187,13 @@
   </ul>
 </nav>
 
-<div class="page-wrap">
+<div class="viz-tooltip" id="tooltip"></div>
 
+<div class="page-wrap">
   <div class="page-header">
     <p class="page-eyebrow">Live Research Tool · Human-AI Collaboration</p>
     <h1 class="page-title">AI Adoption <em>Tracker</em></h1>
-    <p class="page-desc">
-      A running log of real-world cases where AI adoption decisions were made under urgency, competitive pressure, or social proof — and what followed. Connected to the research behind <a href="blog/crisis-adoption-problem.html">The Crisis Adoption Problem</a> and its companion essays.
-    </p>
+    <p class="page-desc">A running log of real-world cases where AI adoption decisions were made under urgency, competitive pressure, or social proof — and what followed. Connected to the research behind <a href="blog/crisis-adoption-problem.html">The Crisis Adoption Problem</a> and its companion essays.</p>
     <div class="methodology-note">
       <span>◈</span>
       <span><strong>How this works:</strong> Each search uses Claude with live web access to surface current cases, then structures them against the adoption framework from my dissertation research. Cases are scored for trigger type, evaluation depth, and documented outcome. This is a research aid, not a judgment — the goal is pattern recognition, not verdict.</span>
@@ -219,9 +207,10 @@
     </button>
     <div class="filter-group" id="filterGroup" style="display:none;">
       <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
-      <button class="filter-btn" onclick="filterCards('competitive', this)">Competitive Pressure</button>
+      <button class="filter-btn" onclick="filterCards('competitive', this)">Competitive</button>
       <button class="filter-btn" onclick="filterCards('crisis', this)">Crisis</button>
       <button class="filter-btn" onclick="filterCards('social', this)">Social Proof</button>
+      <button class="filter-btn" onclick="filterCards('market', this)">Market</button>
     </div>
     <span class="last-run" id="lastRun"></span>
   </div>
@@ -232,28 +221,42 @@
   </div>
 
   <div class="stats-row" id="statsRow">
-    <div class="stat-cell">
-      <div class="stat-value" id="statTotal">—</div>
-      <div class="stat-label">Cases Found</div>
+    <div class="stat-cell"><div class="stat-value" id="statTotal">—</div><div class="stat-label">Cases Found</div></div>
+    <div class="stat-cell"><div class="stat-value" id="statTrigger">—</div><div class="stat-label">Competitive Trigger</div></div>
+    <div class="stat-cell"><div class="stat-value" id="statNegative">—</div><div class="stat-label">Negative / Mixed</div></div>
+    <div class="stat-cell"><div class="stat-value" id="statPending">—</div><div class="stat-label">Outcome Pending</div></div>
+  </div>
+
+  <!-- VISUALIZATIONS -->
+  <div class="viz-section" id="vizSection">
+    <div class="viz-section-label">Pattern Analysis · Hover nodes to explore · Click to highlight case</div>
+    <div class="viz-grid">
+      <div class="matrix-wrap">
+        <div class="matrix-title">Trigger × Outcome Matrix</div>
+        <div class="matrix-sub">Each node is a case. Position shows trigger type vs. outcome severity.</div>
+        <canvas id="matrixCanvas" height="280"></canvas>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-title">Adoption Timeline</div>
+        <div class="timeline-sub">Cases plotted chronologically, colored by trigger type.</div>
+        <canvas id="timelineCanvas" height="280"></canvas>
+      </div>
     </div>
-    <div class="stat-cell">
-      <div class="stat-value" id="statTrigger">—</div>
-      <div class="stat-label">Competitive Trigger</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-value" id="statNegative">—</div>
-      <div class="stat-label">Negative Outcome</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-value" id="statPending">—</div>
-      <div class="stat-label">Outcome Pending</div>
+    <div class="viz-legend">
+      <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">Trigger:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#8b3a2a"></span>Competitive</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#c4614e"></span>Crisis</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#a07840"></span>Social Proof</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#5a7a6a"></span>Market</span>
+      <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-left:1rem;margin-right:0.5rem;">Eval:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--ink);opacity:1"></span>Rushed</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--ink);opacity:0.5"></span>Moderate</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--ink);opacity:0.2"></span>Thorough</span>
     </div>
   </div>
 
   <div class="stream-log" id="streamLog"></div>
-
   <div class="case-grid" id="caseGrid"></div>
-
 </div>
 
 <footer>
@@ -264,6 +267,11 @@
 <script>
 let allCases = [];
 let activeFilter = 'all';
+let highlightedIndex = -1;
+const TRIGGER_COLORS = { competitive: '#8b3a2a', crisis: '#c4614e', social: '#a07840', market: '#5a7a6a' };
+const TRIGGER_ORDER = ['competitive', 'market', 'social', 'crisis'];
+const OUTCOME_ORDER = ['positive', 'pending', 'mixed', 'negative'];
+const EVAL_ALPHA = { rushed: 1.0, moderate: 0.55, thorough: 0.25 };
 
 function log(msg, accent = false) {
   const el = document.getElementById('streamLog');
@@ -281,6 +289,253 @@ function setStatus(msg, visible = true) {
   document.getElementById('statusText').textContent = msg;
 }
 
+function showTooltip(e, html) {
+  const t = document.getElementById('tooltip');
+  t.innerHTML = html;
+  t.classList.add('visible');
+  positionTooltip(e);
+}
+function positionTooltip(e) {
+  const t = document.getElementById('tooltip');
+  let x = e.clientX + 14, y = e.clientY - 10;
+  if (x + 250 > window.innerWidth) x = e.clientX - 254;
+  if (y + 120 > window.innerHeight) y = e.clientY - 120;
+  t.style.left = x + 'px';
+  t.style.top = y + 'px';
+}
+function hideTooltip() { document.getElementById('tooltip').classList.remove('visible'); }
+
+// ── MATRIX ──────────────────────────────────────────────────────────────
+function drawMatrix(cases) {
+  const canvas = document.getElementById('matrixCanvas');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 280 * dpr;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = '280px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = 280;
+  const PAD = { top: 20, right: 20, bottom: 40, left: 70 };
+  const pw = W - PAD.left - PAD.right;
+  const ph = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = '#d4c9b5'; ctx.lineWidth = 1;
+  TRIGGER_ORDER.forEach((_, i) => {
+    const x = PAD.left + (i + 0.5) * pw / TRIGGER_ORDER.length;
+    ctx.beginPath(); ctx.moveTo(x, PAD.top); ctx.lineTo(x, PAD.top + ph); ctx.stroke();
+  });
+  OUTCOME_ORDER.forEach((_, i) => {
+    const y = PAD.top + (i + 0.5) * ph / OUTCOME_ORDER.length;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + pw, y); ctx.stroke();
+  });
+
+  // Axis labels
+  ctx.font = '600 9px "DM Mono", monospace';
+  ctx.fillStyle = '#7a7065';
+  ctx.textAlign = 'center';
+  TRIGGER_ORDER.forEach((t, i) => {
+    const x = PAD.left + (i + 0.5) * pw / TRIGGER_ORDER.length;
+    ctx.fillText(t.toUpperCase(), x, H - 10);
+  });
+  ctx.textAlign = 'right';
+  OUTCOME_ORDER.forEach((o, i) => {
+    const y = PAD.top + (i + 0.5) * ph / OUTCOME_ORDER.length + 4;
+    ctx.fillText(o.toUpperCase(), PAD.left - 8, y);
+  });
+
+  // Axis titles
+  ctx.font = '500 8px "DM Mono", monospace';
+  ctx.fillStyle = '#c8b89a'; ctx.textAlign = 'center';
+  ctx.fillText('TRIGGER TYPE', PAD.left + pw / 2, H - 1);
+  ctx.save(); ctx.translate(10, PAD.top + ph / 2); ctx.rotate(-Math.PI / 2);
+  ctx.fillText('OUTCOME', 0, 0); ctx.restore();
+
+  // Jitter for overlapping points
+  const jitterMap = {};
+  cases.forEach(c => {
+    const key = `${c.trigger}-${c.outcome}`;
+    jitterMap[key] = (jitterMap[key] || 0) + 1;
+  });
+  const jitterCount = {};
+
+  // Plot nodes
+  window._matrixNodes = [];
+  cases.forEach((c, idx) => {
+    const ti = TRIGGER_ORDER.indexOf(c.trigger);
+    const oi = OUTCOME_ORDER.indexOf(c.outcome);
+    if (ti < 0 || oi < 0) return;
+
+    const key = `${c.trigger}-${c.outcome}`;
+    jitterCount[key] = (jitterCount[key] || 0);
+    const count = jitterMap[key];
+    const offset = jitterCount[key]++ - (count - 1) / 2;
+    const jitterX = count > 1 ? offset * 14 : 0;
+    const jitterY = count > 1 ? (Math.random() - 0.5) * 10 : 0;
+
+    const x = PAD.left + (ti + 0.5) * pw / TRIGGER_ORDER.length + jitterX;
+    const y = PAD.top + (oi + 0.5) * ph / OUTCOME_ORDER.length + jitterY;
+    const r = 9;
+    const color = TRIGGER_COLORS[c.trigger] || '#7a7065';
+    const alpha = EVAL_ALPHA[c.evaluationDepth] || 0.7;
+    const isHL = highlightedIndex === idx;
+
+    ctx.beginPath();
+    ctx.arc(x, y, isHL ? r + 3 : r, 0, Math.PI * 2);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    if (isHL) { ctx.strokeStyle = '#1a1612'; ctx.lineWidth = 2; ctx.stroke(); }
+
+    window._matrixNodes.push({ x, y, r: r + 4, idx, case: c });
+  });
+
+  canvas.onmousemove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left), my = (e.clientY - rect.top);
+    let hit = null;
+    for (const n of window._matrixNodes) {
+      if (Math.hypot(mx - n.x, my - n.y) < n.r) { hit = n; break; }
+    }
+    if (hit) {
+      showTooltip(e, `<strong>${escHtml(hit.case.org)}</strong>${hit.case.date}<br/>Trigger: ${hit.case.trigger}<br/>Outcome: ${hit.case.outcome}<br/>Eval: ${hit.case.evaluationDepth}`);
+      canvas.style.cursor = 'pointer';
+    } else { hideTooltip(); canvas.style.cursor = 'crosshair'; }
+  };
+  canvas.onmouseleave = hideTooltip;
+  canvas.onclick = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    for (const n of window._matrixNodes) {
+      if (Math.hypot(mx - n.x, my - n.y) < n.r) { highlightCase(n.idx); return; }
+    }
+  };
+}
+
+// ── TIMELINE ─────────────────────────────────────────────────────────────
+function parseDate(str) {
+  const d = new Date(str);
+  return isNaN(d) ? null : d;
+}
+
+function drawTimeline(cases) {
+  const canvas = document.getElementById('timelineCanvas');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 280 * dpr;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = '280px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = 280;
+  const PAD = { top: 20, right: 20, bottom: 40, left: 20 };
+  const pw = W - PAD.left - PAD.right;
+  const ph = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const dated = cases.map((c, idx) => ({ ...c, idx, d: parseDate(c.date) })).filter(c => c.d);
+  if (dated.length === 0) return;
+
+  const times = dated.map(c => c.d.getTime());
+  const minT = Math.min(...times), maxT = Math.max(...times);
+  const range = maxT - minT || 1;
+
+  // Outcome band lines
+  const bands = ['positive', 'pending', 'mixed', 'negative'];
+  const bandColors = ['#5a7a6a22', '#7a706522', '#a0784022', '#8b3a2a22'];
+  bands.forEach((b, i) => {
+    const y = PAD.top + (i / bands.length) * ph;
+    ctx.fillStyle = bandColors[i];
+    ctx.fillRect(PAD.left, y, pw, ph / bands.length);
+    ctx.font = '500 8px "DM Mono", monospace';
+    ctx.fillStyle = '#c8b89a';
+    ctx.textAlign = 'left';
+    ctx.fillText(b.toUpperCase(), PAD.left + 4, y + 13);
+  });
+
+  // Baseline
+  ctx.strokeStyle = '#d4c9b5'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top + ph); ctx.lineTo(PAD.left + pw, PAD.top + ph); ctx.stroke();
+
+  // Date labels
+  ctx.font = '500 8px "DM Mono", monospace'; ctx.fillStyle = '#7a7065'; ctx.textAlign = 'center';
+  const labelDate = new Date(minT);
+  ctx.fillText(labelDate.toLocaleDateString('en-US', { month: 'short', year: '2-digit' }), PAD.left + 10, H - 10);
+  const labelDateEnd = new Date(maxT);
+  ctx.fillText(labelDateEnd.toLocaleDateString('en-US', { month: 'short', year: '2-digit' }), PAD.left + pw - 10, H - 10);
+
+  // Plot nodes
+  window._timelineNodes = [];
+  dated.forEach(c => {
+    const oi = OUTCOME_ORDER.indexOf(c.outcome);
+    const x = PAD.left + ((c.d.getTime() - minT) / range) * pw;
+    const y = PAD.top + (oi < 0 ? 0.5 : (oi + 0.5) / OUTCOME_ORDER.length) * ph;
+    const r = 8;
+    const color = TRIGGER_COLORS[c.trigger] || '#7a7065';
+    const alpha = EVAL_ALPHA[c.evaluationDepth] || 0.7;
+    const isHL = highlightedIndex === c.idx;
+
+    ctx.beginPath();
+    ctx.arc(x, y, isHL ? r + 3 : r, 0, Math.PI * 2);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    if (isHL) { ctx.strokeStyle = '#1a1612'; ctx.lineWidth = 2; ctx.stroke(); }
+
+    window._timelineNodes.push({ x, y, r: r + 4, idx: c.idx, case: c });
+  });
+
+  canvas.onmousemove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    let hit = null;
+    for (const n of window._timelineNodes) {
+      if (Math.hypot(mx - n.x, my - n.y) < n.r) { hit = n; break; }
+    }
+    if (hit) {
+      showTooltip(e, `<strong>${escHtml(hit.case.org)}</strong>${hit.case.date}<br/>${hit.case.trigger} · ${hit.case.outcome}`);
+      canvas.style.cursor = 'pointer';
+    } else { hideTooltip(); canvas.style.cursor = 'crosshair'; }
+  };
+  canvas.onmouseleave = hideTooltip;
+  canvas.onclick = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    for (const n of window._timelineNodes) {
+      if (Math.hypot(mx - n.x, my - n.y) < n.r) { highlightCase(n.idx); return; }
+    }
+  };
+}
+
+function highlightCase(idx) {
+  highlightedIndex = idx;
+  drawMatrix(allCases);
+  drawTimeline(allCases);
+  document.querySelectorAll('.case-card').forEach(el => el.classList.remove('highlighted'));
+  const cards = document.querySelectorAll('.case-card');
+  if (cards[idx]) {
+    cards[idx].classList.add('highlighted');
+    cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function drawVisualizations(cases) {
+  document.getElementById('vizSection').classList.add('visible');
+  setTimeout(() => {
+    drawMatrix(cases);
+    drawTimeline(cases);
+  }, 50);
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────────────
 async function runSearch() {
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;
@@ -289,7 +544,8 @@ async function runSearch() {
   document.getElementById('caseGrid').innerHTML = '';
   document.getElementById('statsRow').classList.remove('visible');
   document.getElementById('filterGroup').style.display = 'none';
-  allCases = [];
+  document.getElementById('vizSection').classList.remove('visible');
+  allCases = []; highlightedIndex = -1;
 
   setStatus('Initiating live web search for AI adoption cases...');
   log('Connecting to Claude with web search...');
@@ -300,12 +556,6 @@ Your task: search the web for RECENT (2025-2026), REAL, SPECIFIC cases of organi
 1. TRIGGER: What drove adoption — competitive pressure, crisis, social proof/bandwagon, market pressure
 2. EVALUATION DEPTH: Was there a proper evaluation before deployment, or was it rushed?
 3. OUTCOME: What happened after — cost overruns, ROI questions, reversals, corrections, or positive results
-
-Look for cases like:
-- Companies limiting or pulling back AI tools after cost surprises (e.g., Walmart/Code Puppy, Uber AI budget)
-- Companies adopting AI under investor/board pressure with unclear ROI
-- Organizations discovering post-deployment that AI wasn't delivering expected value
-- Cases where AI adoption was announced under competitive pressure and later quietly scaled back
 
 Return ONLY a valid JSON array. No markdown, no explanation, just the raw JSON array.
 
@@ -322,14 +572,11 @@ Each case object must have exactly these fields:
   "relevance": "One sentence connecting this to the understanding-trust gap or crisis adoption framework"
 }
 
-Return 6-8 cases. Prioritize recency and specificity. Only include cases with verifiable details — no vague examples.`;
+Return 6-8 cases. Prioritize recency and specificity. Only include cases with verifiable details.`;
 
   try {
     log('Sending search request with web access enabled...');
-
-    // Cloudflare Worker proxy
     const WORKER_URL = 'https://anthropic-proxy.debra-hogue1981.workers.dev';
-
     const response = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -340,19 +587,15 @@ Return 6-8 cases. Prioritize recency and specificity. Only include cases with ve
         system: systemPrompt,
         messages: [{
           role: 'user',
-          content: `Search the web for recent (2025-2026) real cases of AI adoption decisions made under urgency, competitive pressure, or social proof — especially cases where the outcome revealed insufficient evaluation. Include the Walmart Code Puppy case and Uber AI budget case as anchors, then find 4-6 additional current cases. Today's date is ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}. Return only valid JSON array.`
+          content: `Search the web for recent (2025-2026) real cases of AI adoption decisions made under urgency, competitive pressure, or social proof — especially where outcome revealed insufficient evaluation. Include the Walmart Code Puppy and Uber AI budget cases as anchors, then find 4-6 additional current cases. Today's date is ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}. Return only valid JSON array.`
         }]
       })
     });
 
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
     const data = await response.json();
     log('Response received, extracting cases...');
 
-    // Extract text from all content blocks
     let rawText = '';
     for (const block of data.content) {
       if (block.type === 'text') rawText += block.text;
@@ -360,29 +603,21 @@ Return 6-8 cases. Prioritize recency and specificity. Only include cases with ve
     }
 
     log('Parsing structured case data...');
-
-    // Strip any markdown fences
     let jsonStr = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
-
-    // Find the JSON array
-    const start = jsonStr.indexOf('[');
-    const end = jsonStr.lastIndexOf(']');
+    const start = jsonStr.indexOf('['), end = jsonStr.lastIndexOf(']');
     if (start === -1 || end === -1) throw new Error('No JSON array found in response');
     jsonStr = jsonStr.slice(start, end + 1);
-
     allCases = JSON.parse(jsonStr);
     log(`Found ${allCases.length} cases. Rendering...`, true);
 
     renderCases(allCases);
     updateStats(allCases);
+    drawVisualizations(allCases);
 
     document.getElementById('filterGroup').style.display = 'flex';
     document.getElementById('lastRun').textContent = `Last updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
     setStatus('', false);
-
-    setTimeout(() => {
-      document.getElementById('streamLog').classList.remove('visible');
-    }, 3000);
+    setTimeout(() => document.getElementById('streamLog').classList.remove('visible'), 3000);
 
   } catch (err) {
     log('Error: ' + err.message);
@@ -398,24 +633,19 @@ Return 6-8 cases. Prioritize recency and specificity. Only include cases with ve
 function renderCases(cases) {
   const grid = document.getElementById('caseGrid');
   grid.innerHTML = '';
-
   const filtered = activeFilter === 'all' ? cases : cases.filter(c => c.trigger === activeFilter);
+  if (filtered.length === 0) { grid.innerHTML = `<div class="empty-state">No cases match this filter.</div>`; return; }
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="empty-state">No cases match this filter.</div>`;
-    return;
-  }
+  const triggerLabels = { competitive: 'Competitive Pressure', crisis: 'Crisis', social: 'Social Proof', market: 'Market Pressure' };
+  const evalLabels = { rushed: 'Rushed', moderate: 'Moderate', thorough: 'Thorough' };
+  const outcomeLabels = { negative: 'Negative Outcome', mixed: 'Mixed Results', pending: 'Outcome Pending', positive: 'Positive' };
 
   filtered.forEach((c, i) => {
+    const realIdx = cases.indexOf(c);
     const card = document.createElement('div');
-    card.className = 'case-card';
-    card.dataset.trigger = c.trigger;
+    card.className = 'case-card' + (highlightedIndex === realIdx ? ' highlighted' : '');
     card.style.animationDelay = `${i * 0.07}s`;
-
-    const triggerLabels = { competitive: 'Competitive Pressure', crisis: 'Crisis', social: 'Social Proof', market: 'Market Pressure' };
-    const evalLabels = { rushed: 'Rushed', moderate: 'Moderate', thorough: 'Thorough' };
-    const outcomeLabels = { negative: 'Negative Outcome', mixed: 'Mixed Results', pending: 'Outcome Pending', positive: 'Positive' };
-
+    card.onclick = () => highlightCase(realIdx);
     card.innerHTML = `
       <div class="case-header">
         <div class="case-org">${escHtml(c.org)}</div>
@@ -428,24 +658,16 @@ function renderCases(cases) {
       </div>
       <p class="case-summary">${escHtml(c.summary)}</p>
       <div class="case-meta">
-        <div class="case-meta-row">
-          <span class="case-meta-label">Trigger</span>
-          <span class="case-meta-value">${escHtml(c.triggerDetail)}</span>
-        </div>
-        <div class="case-meta-row">
-          <span class="case-meta-label">Outcome</span>
-          <span class="case-meta-value">${escHtml(c.outcomeDetail)}</span>
-        </div>
+        <div class="case-meta-row"><span class="case-meta-label">Trigger</span><span class="case-meta-value">${escHtml(c.triggerDetail)}</span></div>
+        <div class="case-meta-row"><span class="case-meta-label">Outcome</span><span class="case-meta-value">${escHtml(c.outcomeDetail)}</span></div>
       </div>
-      <div class="case-relevance">${escHtml(c.relevance)}</div>
-    `;
+      <div class="case-relevance">${escHtml(c.relevance)}</div>`;
     grid.appendChild(card);
   });
 }
 
 function updateStats(cases) {
-  const statsRow = document.getElementById('statsRow');
-  statsRow.classList.add('visible');
+  document.getElementById('statsRow').classList.add('visible');
   document.getElementById('statTotal').textContent = cases.length;
   document.getElementById('statTrigger').textContent = cases.filter(c => c.trigger === 'competitive' || c.trigger === 'market').length;
   document.getElementById('statNegative').textContent = cases.filter(c => c.outcome === 'negative' || c.outcome === 'mixed').length;
@@ -463,6 +685,10 @@ function escHtml(str) {
   if (!str) return '';
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+window.addEventListener('resize', () => {
+  if (allCases.length > 0) { drawMatrix(allCases); drawTimeline(allCases); }
+});
 </script>
 </body>
 </html>
