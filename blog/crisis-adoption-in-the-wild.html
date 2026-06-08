@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Crisis Adoption in the Wild — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .companion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 0.4rem 0.85rem;
+    margin-bottom: 3rem;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .companion-badge:hover { color: var(--accent); border-color: var(--accent-light); }
+  .companion-badge::before { content: '↗'; font-size: 0.7rem; }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); text-decoration: none; }
+  .footnote-text a:hover { text-decoration: underline; }
+
+  .article-signoff {
+    margin-top: 4rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 1.5rem; align-items: center;
+  }
+  .signoff-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #c4b8a4, #8b3a2a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1.3rem; color: var(--paper);
+    flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research & CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <a href="crisis-adoption-problem.html" class="companion-badge">Companion to: The Crisis Adoption Problem</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">Crisis Adoption<br/><em>in the Wild</em></h1>
+  <p class="article-subtitle">A $16.9 million contract, a financial emergency, and what happens when an entire university system adopts AI before it knows what it's asking.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">7 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Adoption</span>
+      <span class="tag">Education</span>
+      <span class="tag">Crisis Adoption</span>
+      <span class="tag">Human Factors</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>When I wrote about the Crisis Adoption Problem, I was describing a pattern I had observed in my research and in organizational behavior more broadly: the tendency to reach for AI hardest, and evaluate it least carefully, precisely when the stakes are highest and the pressure is greatest. I framed it as a structural feature of how human cognition and institutional incentives interact under stress.</p>
+
+    <p>I did not expect to open a magazine and find the whole thing illustrated at the scale of a university system.</p>
+
+    <p>California's public university system recently spent $16.9 million on an AI contract during a financial crisis that was simultaneously producing mass layoffs, shuttered academic departments, and a 6 percent tuition increase. The deal was announced in February 2025. Tools were rolled out across 22 campuses that spring, right as students and faculty were preparing for finals. Faculty described finding out the way you find out about something that wasn't meant for you: it was already happening.</p>
+
+    <p>This is Crisis Adoption in the wild. And it is worth examining carefully, because the costs here are not the ones that show up on a balance sheet.</p>
+
+    <h2>The Anatomy of a Crisis Adoption</h2>
+
+    <p>The Crisis Adoption Problem does not require bad intentions. It does not even require poor judgment, exactly. It requires conditions that reliably compress deliberation: urgency, resource scarcity, competitive pressure, and the presence of a confident vendor offering a solution. In those conditions, the questions that matter most — What does this system actually optimize for? How does it fail? Who is accountable when it does? — get deferred. Not because no one thought to ask them, but because the situation made asking them feel like a luxury.</p>
+
+    <p>Every element of that description fits here. A system facing a $2.3 billion deficit. A governor's office signaling clearly that AI integration was the direction of travel. A contract with the world's most visible AI company, structured as a flagship initiative rather than a pilot. A rollout timed not around pedagogical readiness but around an announcement. And faculty left to figure out what any of it meant, classroom by classroom, without guidance that could tell them because no one at the institutional level had worked that out yet.</p>
+
+    <div class="pullquote">
+      <p>"The procurement process compresses. The pilot evaluation shortens or disappears. The critical questions get deferred — not maliciously, but because urgency made asking them feel like a luxury."</p>
+    </div>
+
+    <p>The chief information officer of the system put it plainly when he asked: "Would we go out of business if we didn't adopt these technologies?" That question reveals exactly where the decision was being made from. Not from a position of readiness, or clarity about outcomes, or even a framework for evaluating success. From fear of being left behind. From the same cognitive posture my research documented in individual operators under time pressure: reaching for the tool that reduces uncertainty fastest, and trusting it more than the evidence warrants.</p>
+
+    <h2>What the Classroom Reveals</h2>
+
+    <p>The understanding-trust gap I documented in my dissertation is a finding about individuals: under pressure, trust in AI outputs increases even as comprehension of those outputs decreases. The gap widens precisely when it is most dangerous.</p>
+
+    <p>What the university case shows is that this gap scales. When an institution adopts a technology under crisis conditions, without clear instructional purpose or evaluation criteria, it creates the structural conditions for that same gap to appear everywhere at once. Some faculty embrace the tools. Some refuse them entirely. Students are caught in between, adapting to whatever the instructor in front of them has worked out — or hasn't. One student spends five times longer on an assignment because she refused AI on ethical grounds; another reorients his entire career trajectory around prompt engineering to avoid becoming part of what he called the AI underclass. Neither response is wrong. But neither is the result of a deliberate institutional framework. They are the results of individuals navigating a technology their institution adopted before it understood what it was for.</p>
+
+    <p>The educators I find most instructive in accounts like this are the ones who were tinkering before the mandate arrived. A sociology professor who had been experimenting with AI-generated chatbots of historical thinkers for years found himself genuinely equipped to integrate the technology thoughtfully when the initiative came down. That is not a coincidence. His relationship with the tool was calibrated under low-pressure conditions, in the service of a clear pedagogical goal he had defined himself. He understood what it did and what it didn't do. His trust tracked his comprehension.</p>
+
+    <p>That is the opposite of what crisis adoption produces.</p>
+
+    <h2>The Cost That Doesn't Show Up Yet</h2>
+
+    <p>In an earlier essay, I wrote about the day the bill arrives: the moment when organizations that adopted AI broadly, without establishing what the tools were worth, face the accountability reckoning. Walmart limiting employee access to an internal AI tool because the costs exceeded any measurable return. Uber exhausting its annual AI budget by April. The financial tab, coming due.</p>
+
+    <p>The bill I am describing here is different. It will not appear on a balance sheet. It will not arrive as a line-item in a budget review. It will arrive in the form of graduates who learned to produce outputs without learning to evaluate them. Students who were trained to use a tool before anyone had determined what the tool was supposed to develop in them. A generation of workers entering an AI economy with high fluency and uncertain depth.</p>
+
+    <p>I want to be careful here, because I am not making an argument against AI in education. The technology is not the problem. Some of the most genuinely thoughtful instructional integration I have read about involves exactly this kind of tool, used deliberately, in service of goals that the instructor defined before the tool arrived. The question is never whether to use AI. It is whether the relationship to the tool was formed under conditions that allowed for calibration.</p>
+
+    <div class="pullquote">
+      <p>"The bill here will not appear on a balance sheet. It will arrive in the form of what was never developed — in students who learned to produce outputs before anyone determined what the tool was supposed to build in them."</p>
+    </div>
+
+    <p>Crisis conditions do not allow for that. Crisis conditions produce adoption that outruns understanding. And in education, where the entire point is the development of human capacity, adoption that outruns understanding does not just fail to deliver value. It can actively work against the goal it was meant to serve.</p>
+
+    <h2>The Pattern, One More Time</h2>
+
+    <p>What makes this case useful is not that it is unusual. It is that it is legible. The pressure is documented. The timeline is documented. The gap between the announcement and the readiness is documented. Faculty describing an initiative that "coincided" with a financial crisis rather than responded to an educational need. A rollout timed to the announcement rather than to the semester. A system-wide mandate delivered without the guidance that would have required someone to first work out what the mandate was actually for.</p>
+
+    <p>This is the Crisis Adoption Problem operating at institutional scale, in a domain where the consequences are not recoverable on a quarterly earnings call. And it is happening in California, which has positioned itself as the petri dish for exactly this kind of experiment.</p>
+
+    <p>Other systems are watching. Some are following. The bills from this one are not in yet.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Research Context</p>
+      <p class="footnote-text">This essay is part of a series on AI adoption failures. See also <a href="crisis-adoption-problem.html">The Crisis Adoption Problem</a> and <a href="the-day-the-bill-arrives.html">The Day the Bill Arrives</a>. The understanding-trust gap referenced throughout is drawn from my doctoral dissertation, completed at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab). The comparative study of MURDOC and FACE interfaces is currently under review at ACM Transactions on Computer-Human Interaction (TOCHI).</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
