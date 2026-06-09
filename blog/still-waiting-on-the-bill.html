@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Still Waiting on the Bill — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .companion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 0.4rem 0.85rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+    display: block;
+    width: fit-content;
+  }
+  .companion-badge:hover { color: var(--accent); border-color: var(--accent-light); }
+  .companion-badge::before { content: '↗'; font-size: 0.7rem; margin-right: 0.2rem; }
+  .companion-badges { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 3rem; }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); text-decoration: none; }
+  .footnote-text a:hover { text-decoration: underline; }
+
+  .article-signoff {
+    margin-top: 4rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 1.5rem; align-items: center;
+  }
+  .signoff-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #c4b8a4, #8b3a2a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1.3rem; color: var(--paper);
+    flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4a4483854394ed1a464603d4ce90549"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research & CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <div class="companion-badges">
+    <a href="crisis-adoption-problem.html" class="companion-badge">Part of the series: The Crisis Adoption Problem</a>
+    <a href="the-day-the-bill-arrives.html" class="companion-badge">See also: The Day the Bill Arrives</a>
+  </div>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">Still Waiting<br/><em>on the Bill</em></h1>
+  <p class="article-subtitle">When a tool amplifies capability in both directions, releasing it is not a technical decision. It is a trust decision. And we are still learning what that means.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">7 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Adoption</span>
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">Trust Calibration</span>
+      <span class="tag">Human Factors</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>In April 2026, Anthropic released a new AI model to a small group of vetted organizations and said clearly that it had no plans to make it publicly available. The model, Claude Mythos, had demonstrated an ability to autonomously find high-severity vulnerabilities in major operating systems and browsers at a level that reportedly exceeded many human security professionals. Anthropic's reasoning was direct: the industry lacked sufficient safeguards against misuse.</p>
+
+    <p>Six weeks later, Anthropic reversed course. Alongside a separate model release in late May, the company confirmed that Mythos-class models would be available to all customers in the coming weeks. The public version, reporting suggests, will carry substantial guardrails and more limited cybersecurity functions than the version available to restricted partners. A broader rollout appears imminent.</p>
+
+    <p>I am not writing this to second-guess that decision. Anthropic has access to information I do not, and the guardrail work that enabled the reversal may well be sound. What I want to examine is the structure of the situation — because it surfaces something my research has been circling for a while, and names it more clearly than most examples I have found.</p>
+
+    <h2>The Problem With Amplification</h2>
+
+    <p>I have written before about the idea that AI should amplify human capability rather than replace it. It is a framing I genuinely believe in. But amplification carries a condition that the slogan often leaves out: <strong>amplification works in both directions.</strong></p>
+
+    <p>A model capable of finding software vulnerabilities that human security professionals miss is, by definition, also capable of helping someone exploit those vulnerabilities faster than defenders can respond. The same capability. The same model. The outcome depends entirely on who is using it and what they are trying to do.</p>
+
+    <p>This is the dual-use problem, and it is not new — it predates AI by decades in domains like chemistry, biology, and cryptography. What is new is the scale and accessibility. A dual-use capability that previously required significant expertise, infrastructure, and time can now be accessed through an API. The asymmetry between offense and defense, already difficult to manage, becomes harder when the tool lowers barriers for both sides simultaneously.</p>
+
+    <div class="pullquote">
+      <p>"Amplification works in both directions. The question is never whether the tool is powerful. It is whether the humans on both sides of its release are prepared for what that power produces."</p>
+    </div>
+
+    <h2>Where My Research Connects</h2>
+
+    <p>The understanding-trust gap I documented in my dissertation is a finding about individuals under pressure: trust in AI outputs increases even as comprehension decreases. The gap widens exactly when accurate calibration matters most.</p>
+
+    <p>The cybersecurity context sharpens this in a way that other domains do not. In most AI deployment scenarios, a miscalibrated trust relationship produces inefficiency, poor decisions, wasted resources. Those costs are real, but they are often recoverable. In the security domain, the cost of miscalibration can be an incident. An unpatched vulnerability. A breach. And unlike a budget overrun or a failed product launch, that kind of bill does not arrive with a clear line item. It arrives as an event, often long after the decision that enabled it.</p>
+
+    <p>What concerns me is not that Mythos is being released. It is that the humans on both sides of this — the defenders using it to harden systems, and the actors who will attempt to use it otherwise — are operating under conditions that my research suggests are not optimal for calibrated trust. Defenders are under chronic pressure: understaffed, reactive, working against a threat landscape that moves faster than their tools. Those are exactly the conditions under which my research shows the understanding-trust gap widens. Pressing a powerful, novel tool into that environment and trusting that the guardrails hold is not a small bet.</p>
+
+    <h2>The Developer's Version of Crisis Adoption</h2>
+
+    <p>I have written about the Crisis Adoption Problem from the perspective of organizations adopting AI under pressure. But the Mythos reversal surfaces a version of the same pattern on the developer side.</p>
+
+    <p>Anthropic stated publicly in April that it would not release Mythos. Six weeks later, it confirmed a public rollout. The reporting attributes this to one of two things: the safeguard work moved faster than expected, or competitive pressure from other frontier labs forced the timeline. Both are plausible. Both are also structurally familiar. "The safeguards are ready" and "we cannot afford to wait" are the two most common justifications for releasing a capability before the environment has fully absorbed what it means.</p>
+
+    <p>I want to be precise: I am not claiming Anthropic made the wrong call. I do not have the information required to make that judgment. What I am noting is that the conditions surrounding the reversal — a six-week policy pivot, competitive market dynamics, a capability with acknowledged dual-use risk — are conditions that reliably compress deliberation. That is worth naming, regardless of whether the specific decision was correct.</p>
+
+    <div class="pullquote">
+      <p>"The conditions surrounding the reversal are conditions that reliably compress deliberation. That is worth naming, regardless of whether the specific decision was correct."</p>
+    </div>
+
+    <h2>The Bill We Cannot Price Yet</h2>
+
+    <p>In an earlier essay I wrote about the day the bill arrives: the moment when organizations that adopted AI broadly, without establishing what the tools were worth, face the accountability reckoning. I described it as a financial event — the point when actual costs surface against a backdrop of unmeasured returns.</p>
+
+    <p>The bill I am describing here is not financial. It cannot be priced in advance, because it depends on how a capability is used by people we have not yet identified, in circumstances we cannot fully anticipate, against systems whose vulnerabilities are not yet known. It is the kind of bill that appears as a headline, not a spreadsheet.</p>
+
+    <p>That does not mean we should not release powerful tools. It means we should be honest about what we are accepting when we do. Releasing a model with significant offensive cybersecurity capabilities into a broad public environment is an act of trust — trust in the guardrails, trust in the operators, trust in the broader ecosystem of defenders who will need to absorb and adapt to whatever the model enables.</p>
+
+    <p>My research suggests that trust, when it outruns understanding, is a liability. That finding was about individual operators at a decision interface. But the structure is the same at every scale. The question is never whether the tool is powerful. It is whether the humans on both sides of its release are prepared for what that power produces.</p>
+
+    <p>We are still finding out. The bill has not arrived yet.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Research Context</p>
+      <p class="footnote-text">This essay is part of a series on AI adoption and trust calibration. See <a href="crisis-adoption-problem.html">The Crisis Adoption Problem</a> and <a href="the-day-the-bill-arrives.html">The Day the Bill Arrives</a>. The understanding-trust gap referenced throughout is drawn from my doctoral dissertation, completed at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab). The MURDOC vs. FACE comparative study (N=150) is currently under review at ACM Transactions on Computer-Human Interaction (TOCHI). Factual claims about Claude Mythos draw on public reporting from Anthropic's release materials and coverage by Sources.news, 9to5Mac, and BleepingComputer as of June 2026.</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
