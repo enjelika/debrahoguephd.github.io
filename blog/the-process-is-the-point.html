@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Process Is the Point — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #841617; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  .article-signoff {
+    margin-top: 4rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 1.5rem; align-items: center;
+  }
+  .signoff-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #c4b8a4, #841617);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1.3rem; color: var(--paper);
+    flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research &amp; CV</a></li>
+    <li><a href="blog.html">Writing</a></li>
+    <li><a href="beyond.html">Beyond the Lab</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap fade-in">
+
+  <a href="blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · AI Governance</p>
+  <h1 class="article-title">The Process<br/><em>Is the Point</em></h1>
+  <p class="article-subtitle">When a government pulls an AI system offline without showing its work, it hasn't made anyone safer. It's just made the problem invisible.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">6 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Governance</span>
+      <span class="tag">Policy</span>
+      <span class="tag">Trust</span>
+      <span class="tag">Safety</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>On Friday evening, the U.S. Commerce Department instructed Anthropic to prevent any foreign national from accessing Fable 5 and Mythos 5, the company's two newest and most capable AI models. The directive cited national security authorities. To comply, Anthropic had to take both models offline entirely — there was no practical way to enforce the restriction on foreign nationals without disabling access for everyone.</p>
+
+    <p>Anthropic complied. And then, in a public statement, the company said something worth paying attention to: it disagreed with the decision, believed the directive stemmed from a misunderstanding, and noted that it had received only verbal evidence of the vulnerability the government claimed to have identified.</p>
+
+    <p>Anthropic also said something I agree with directly: governments should have the ability to block unsafe AI deployments. The question worth examining is not whether that authority is legitimate. It is what that authority requires to be exercised responsibly.</p>
+
+    <h2>What "Verbal Evidence" Actually Means</h2>
+
+    <p>The government identified what it described as a narrow jailbreak — a technique that could allow users to circumvent some safety restrictions in Fable 5. Based on that finding, it directed Anthropic to suspend access for all foreign nationals, which cascaded into a full takedown.</p>
+
+    <p>Anthropic says the evidence provided was verbal. No documented reproduction steps. No demonstrated exploit. No technical specifics shared with the team responsible for the system.</p>
+
+    <p>I spent years in software engineering and quality assurance before moving into research. One of the most basic things you learn in that environment — whether you are filing a bug report or receiving one — is that a report without reproduction steps is not actionable. It is not that you disbelieve the person reporting it. It is that you cannot confirm, isolate, or fix something you cannot reproduce. The problem does not go away because the system went offline. It goes underground.</p>
+
+    <div class="pullquote">
+      <p>"You cannot fix what you cannot reproduce. The problem does not go away when the system goes offline. It goes underground."</p>
+    </div>
+
+    <p>This is not a procedural complaint. It is a safety argument. If Fable 5 has a genuine vulnerability — and it may — then the only path to actually resolving it runs through Anthropic's engineering team having enough information to understand and address it. Removing the model without sharing the specifics means the issue remains unresolved, unpatched, and unknown to the people best positioned to fix it.</p>
+
+    <p>Anthropic noted that the jailbreak, if real, likely exists in other companies' systems as well. That is almost certainly true of any vulnerability discovered in a widely deployed model class. Which means the intervention, as structured, did not address the underlying problem. It addressed one company's deployment of it.</p>
+
+    <h2>The Difference Between Oversight and Reaction</h2>
+
+    <p>There is a version of government intervention in AI that I think is not only legitimate but necessary. It looks like: clearly identified risk, technically grounded evidence, shared with the responsible party in sufficient detail to act on, through a process that is transparent enough to be audited and repeated. That is oversight. It is what responsible deployment governance looks like in any complex technical domain.</p>
+
+    <p>What happened Friday does not quite fit that description. A directive arrived with verbal evidence, no documented reproduction path, and a compliance mechanism — removing access — that does not actually resolve the underlying concern. The people who could fix the problem were not given what they needed to fix it.</p>
+
+    <p>Anthropic's statement put it clearly: they believe the government should have the ability to block unsafe deployments, as part of a statutory process that is transparent, fair, clear, and grounded in technical facts. They said this action did not adhere to those principles. I think that is right. And I think it is important to say so plainly, separate from any judgment about the actors involved.</p>
+
+    <div class="pullquote">
+      <p>"The people who could fix the problem were not given what they needed to fix it. That is not safety. That is the appearance of safety."</p>
+    </div>
+
+    <h2>Why Process Is Not Bureaucracy</h2>
+
+    <p>There is a tendency, when security concerns feel urgent, to treat process as friction — as the thing that slows down the people trying to protect us. I understand that instinct. But in technical domains, process is not administrative overhead. It is the mechanism by which evidence becomes action.</p>
+
+    <p>A jailbreak reported without documentation cannot be patched. A vulnerability identified verbally cannot be verified. An intervention built on unshared evidence cannot be evaluated, challenged, or improved. And in a domain moving as fast as AI, where the same capability gaps exist across multiple systems from multiple organizations, that matters. The goal should not be to take one model offline. It should be to understand and address the class of vulnerability — which requires precisely the kind of technical transparency that this process lacked.</p>
+
+    <p>This is not unique to AI. It is how responsible disclosure works in cybersecurity. It is why aviation safety investigations share findings publicly. It is why pharmaceutical adverse event reporting exists. The value of the process is not just procedural fairness. It is that evidence shared rigorously is evidence that can actually be used.</p>
+
+    <h2>What This Adds to the Pattern</h2>
+
+    <p>I have been writing in this series about the structural failure modes of AI adoption: the pressure to deploy fast, the tendency to trust AI outputs beyond what comprehension warrants, the organizational dynamics that make careful evaluation least likely exactly when it matters most. This case fits a related pattern.</p>
+
+    <p>When intervention — like adoption — is driven by urgency rather than grounded in deliberate process, it tends to produce reactions rather than solutions. The model is offline. The vulnerability, if real, is still there. The organizations best positioned to address it have less information than they need. And the framework for future interventions is, if anything, less clear than it was before.</p>
+
+    <p>AI should happen with us, not to us — and that applies to governance just as much as it applies to deployment. Pulling a system offline is something that happens <em>to</em> a system. Fixing a vulnerability is something that happens <em>with</em> the people who built it. Those are different things, and only one of them makes anyone safer.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Series Context</p>
+      <p class="footnote-text">This essay is part of an ongoing series on AI adoption failures — structural patterns in how organizations and institutions relate to AI that reliably produce bad outcomes. Earlier entries examine the Crisis Adoption Problem, the Bandwagon Problem, and other failure modes in organizational AI adoption.</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
