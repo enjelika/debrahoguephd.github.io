@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Signal in the Noise — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "your-token-here"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #841617; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .article-signoff {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  .signoff-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--sans); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer {
+    text-align: center; padding: 3rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 720px; margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap">
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">The Signal in<br/>the <em>Noise</em></h1>
+  <p class="article-subtitle">An AI caught something the doctors missed. What that moment reveals about trust, comprehension, and what happens when a flag arrives without an explanation.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">6 min read</span>
+    <div class="article-tags">
+      <span class="tag">Clinical AI</span>
+      <span class="tag">Trust Calibration</span>
+      <span class="tag">Human Factors</span>
+      <span class="tag">AI Adoption</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>In February 2025, a 45-year-old man walked into a Queens emergency room coughing up blood. His name was Louie Quiros. He had been struggling to breathe for four days. His heart was beating fast. His chest X-ray showed nothing. His electrocardiogram was abnormal, but ambiguously so — the kind of reading that might indicate coronary disease, or might not. The ER doctors learned he had recently been in California during wildfire season. They sent him home with asthma medicine and an inhaler.</p>
+
+    <p>They were not negligent. The ECG was genuinely difficult to read. And as one cardiologist noted, ordering an echocardiogram for every abnormal ECG would be unsustainable — there are too many abnormal ECGs and not enough capacity to chase each one down. Clinical judgment, under pressure, means making reasonable calls about which signals to pursue. The doctors made one.</p>
+
+    <p>It happened to be wrong. But that is not the part of this story I want to stay with.</p>
+
+    <h2>What the Algorithm Saw</h2>
+
+    <p>Louie Quiros was lucky to be at that particular ER. NewYork-Presbyterian was running a clinical trial of an AI program called EchoNext, developed by Dr. Pierre Elias and his colleagues at Columbia University Irving Medical Center. EchoNext reads every ECG in the system within ten minutes of it being performed, scanning for patterns associated with structural heart damage — patterns that do not announce themselves to the human eye.</p>
+
+    <p>EchoNext flagged Quiros's ECG. The research team called him back a week later. An echocardiogram showed his heart was pumping at roughly ten percent of normal capacity. His mitral valve was leaking. Genetic testing revealed a rare hereditary disorder associated with sudden death. He received a heart transplant.</p>
+
+    <p>The case was published in Nature Medicine in June 2026. EchoNext has since received FDA approval and will be made available, free of charge, to any physician using OpenEvidence, a clinical decision support platform used by approximately half of U.S. doctors.</p>
+
+    <p>It is, by any measure, a remarkable result. And it is also, if you look at it from a certain angle, a near-perfect illustration of what makes this moment in AI adoption so consequential — and so precarious.</p>
+
+    <h2>A Flag Without a Map</h2>
+
+    <p>Here is what the EchoNext alert did not tell the doctors who received it: what it saw. Not in any form a clinician could independently evaluate. The system identified a pattern in the waveform data that its training associated with serious cardiac damage. It surfaced that finding as a flag. The physicians who acted on it — who called Quiros back, who ordered the echo, who ultimately saved his life — did so on the basis of that flag alone.</p>
+
+    <p>This is not a criticism of EchoNext, or of the clinicians. It is a description of the moment. The algorithm detected something real. The humans responded appropriately. The outcome was good. But the chain of events rested on a form of trust that is worth naming precisely: trust in a signal that could not be verified by the people acting on it.</p>
+
+    <div class="pullquote">
+      <p>"The outcome was good. But the chain of events rested on a form of trust that is worth naming precisely."</p>
+    </div>
+
+    <p>In my research on AI-assisted decision-making, I have found that this is not an unusual structure — it is increasingly the default one. AI systems trained on vast datasets can surface patterns that exceed what any individual human could detect unaided. That is the value proposition, and in cases like Quiros's, it is real. But the detection and the understanding are separated. The system sees something. The human acts. The gap between those two events is where trust lives, and it is rarely examined with the care it deserves.</p>
+
+    <h2>What Pressure Does to Trust</h2>
+
+    <p>There is a well-documented pattern in how people respond to AI outputs under cognitive load. When decisions need to be made quickly, the mind looks for the fastest available signal that reduces uncertainty. A confident AI flag is exactly that kind of signal. It feels authoritative. It collapses ambiguity. It invites action without requiring the slower, more effortful work of actually understanding what the system found or why. Comprehension and trust are not the same cognitive process, and pressure affects them differently.</p>
+
+    <p>Emergency medicine is perhaps the highest-pressure environment in which AI tools are now being deployed. That is also what makes the Quiros case instructive, not just as a success story but as a data point. EchoNext worked. The flag was correct. The doctors followed it. But the conditions that made this outcome possible — a research context, a clinical trial with follow-up protocols, a team already primed to take the alert seriously — are not the conditions under which most clinical AI deployments will operate.</p>
+
+    <h2>Scale Changes the Stakes</h2>
+
+    <p>EchoNext's availability through OpenEvidence means it will now reach physicians practicing far outside major academic medical centers, in settings without research infrastructure, without specialists on hand to contextualize a flag, and without institutional familiarity with how the model behaves when it is wrong. That reach is part of the point. The physician who treats patients in a rural clinic, or a community ER, or a primary care practice where cardiology consultation is a referral away, is exactly who this tool is meant to serve.</p>
+
+    <p>But scale also means the distribution of outcomes will widen. EchoNext will catch things that would otherwise be missed. It will also, at some rate, flag things that do not require urgent follow-up. Clinicians who encounter those false positives will form impressions about the system's reliability. Some will recalibrate appropriately. Others will over-trust subsequent alerts, because the last one turned out fine. Others will begin to discount the tool, because it sent them chasing something that wasn't there.</p>
+
+    <p>None of that is speculation. It is what happens when any decision support system is distributed at scale, to users with varying levels of context about how it works, without corresponding investment in the conditions that make calibrated trust possible.</p>
+
+    <div class="pullquote">
+      <p>"The flag arrived. The doctors couldn't see what it saw. They acted anyway. That is the structure of most AI-assisted decisions now."</p>
+    </div>
+
+    <h2>The Question Behind the Case</h2>
+
+    <p>Louie Quiros is alive. That is not a small thing, and nothing in this essay is meant to diminish it. EchoNext did something that cardiologists sitting in quiet offices, given time and every resource, might also have done. What it did was do it faster, and in an environment where those conditions did not exist.</p>
+
+    <p>The question this case raises is not whether AI should be used in clinical settings. It clearly should. The question is what kind of trust architecture we are building around these tools as we scale them. Whether we are investing in the conditions — the protocols, the feedback loops, the interface design, the practitioner training — that allow clinicians to know when to follow a flag and when to interrogate it. Or whether we are distributing powerful tools into high-stakes environments and assuming that a good outcome story is the same as a validated trust framework.</p>
+
+    <p>The signal was real this time. The noise is still there. And the gap between them is where the work actually lives.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Source</p>
+      <p class="footnote-text">Gina Kolata, "Doctors Thought It Was Asthma. A.I. Flagged a Serious Heart Problem." <em>The New York Times</em>, June 22, 2026. <a href="https://www.nytimes.com/2026/06/22/health/artificial-intelligence-heart-damage.html" style="color: var(--muted);">nytimes.com</a></p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
