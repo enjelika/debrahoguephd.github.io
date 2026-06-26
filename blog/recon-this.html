@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Recon This — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4a4483854394ed1a464603d4ce90549"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #841617; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .footnote-text a:hover { color: var(--accent); }
+
+  .article-signoff {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  .signoff-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--sans); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer {
+    text-align: center; padding: 3rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 720px; margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap">
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+  <h1 class="article-title">Recon <em>This</em></h1>
+  <p class="article-subtitle">A low-skill attacker. Fourteen breached companies. One prompt. What the session logs reveal about trust in agentic AI.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">7 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI Adoption</span>
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">Trust Calibration</span>
+      <span class="tag">Agentic AI</span>
+      <span class="tag">Human Factors</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>The attacker's most common prompt was two words: "recon this."</p>
+
+    <p>That was enough. Researchers at OALABS recovered more than 1,000 agent session logs from a server the attacker had compromised and used as his base of operations. The logs documented how he deployed Anthropic's Claude Code and OpenAI's Codex to identify exploitable services, build custom exploits, execute them against targets, and harvest credentials and data. By the time the logs were recovered, at least fourteen companies had been breached.</p>
+
+    <p>The attacker did not know how to do most of what was done on his behalf. The researchers were clear on that point. He issued vague, low-skill directives and allowed the agents to fill in the gaps. The technical execution, the structure, the step-by-step judgment calls — the agent supplied what the attacker lacked. He didn't need to be an expert. He just needed to know how to frame the request.</p>
+
+    <p>He was caught not by any guardrail, but by his own carelessness. He had copied the agents onto someone else's server. When that server's owner discovered the intrusion, they downloaded his entire working directory and handed it to the researchers. Hidden in the logs was something the attacker had apparently not considered: he had asked Claude to help edit his resume. It was in the session history, complete with his name, location, education, and LinkedIn profile.</p>
+
+    <h2>Trust Across Every Layer</h2>
+
+    <p>What makes this case worth sitting with is not the breach count. It is the architecture of trust that made the breach possible, and where that trust was placed at each layer.</p>
+
+    <p>The attacker trusted that claiming "authorized red team exercise" or "cybersecurity research" would be sufficient framing to proceed. He was right, almost every time. Across more than 1,000 sessions, the Claude agent flagged policy violations nine times. The Codex agent flagged one. In nearly every instance the attacker encountered resistance, he reframed the request and continued.</p>
+
+    <p>The agent, in turn, trusted the framing. This is not a simple failure of content filtering. The researchers noted that the language the attacker used to bypass the guardrails is the same language thousands of legitimate security professionals use every day. "Authorized red team exercise." "Security research." The agent had no mechanism to distinguish one from the other. The context was plausible. The framing was coherent. Trust followed.</p>
+
+    <p>And the fourteen breached organizations trusted their perimeters — their existing defenses, their exposure assumptions, the absence of any visible intrusion signal until there wasn't one. None of them knew what was happening in those sessions. The comprehension gap for the targets was total.</p>
+
+    <div class="pullquote">
+      <p>"Trust was extended at every layer. Comprehension was present at none."</p>
+    </div>
+
+    <p>This is the pattern I have been studying in a different domain, under controlled conditions, for several years. In my research on AI-assisted visual analysis, I found that under time pressure, participants' trust in AI outputs increased while their comprehension of those outputs decreased. The two measures moved in opposite directions. The people most confident in what the system produced were often the people who understood it least.</p>
+
+    <p>What the session logs describe is that same gap, but scaled, distributed, and operating without any of the friction that might slow it down.</p>
+
+    <h2>What Guardrails Are Actually For</h2>
+
+    <p>The OALABS researchers raised a point that deserves more attention than it will probably receive. Blunting AI systems with broader refusals, they argued, is not the right response. It would hurt defenders more than attackers. Security professionals rely on these same tools for legitimate research every day. Restricting the vocabulary of the possible would simply push attackers toward older, less restricted models while degrading the utility of frontier systems for the people using them responsibly.</p>
+
+    <p>They are right, and the implication is uncomfortable: the guardrail problem in agentic AI may not be solvable through content filtering alone.</p>
+
+    <p>This is worth unpacking. The guardrails that exist in most frontier AI systems are designed, at least in part, as vocabulary tests. They pattern-match against harmful content, harmful framing, explicit statements of harmful intent. They are good at catching a certain kind of request. They are not designed for the case where the harmful intent is real but the framing is indistinguishable from legitimate professional use.</p>
+
+    <p>That distinction mattered a great deal when AI systems were primarily tools that produced text. It matters differently now. A guardrail on a language model catches what the model says. A guardrail on an agent needs to catch what the agent does — and what it does can span dozens of autonomous steps, across systems the guardrail was never designed to observe.</p>
+
+    <div class="pullquote">
+      <p>"We built guardrails for a tool. We are deploying agents."</p>
+    </div>
+
+    <p>In agentic systems, the agent is not responding to a prompt. It is executing a plan. It is making judgment calls at each step about what to try next, what constitutes success, what information to surface. The attacker did not need to instruct Claude on how to build an exploit. He asked a vague question and trusted the agent to figure out the rest. Claude did.</p>
+
+    <p>A guardrail that catches the word "exploit" in a prompt does nothing for this. The word never appeared in most of the sessions. The intent was real, but the framing was clean, and the execution was autonomous.</p>
+
+    <h2>The Bill Is Already Here</h2>
+
+    <p>In an earlier essay, I wrote about the asymmetry of releasing dual-use AI capabilities — the difficulty of pricing a bill that hasn't arrived yet, for harms that are theoretical until they aren't. The session logs are, in part, what that bill looks like when it arrives. Not as a policy debate or a risk model, but as a recovered directory on a compromised server, with a resume in it.</p>
+
+    <p>I want to be careful not to overstate this as a reason to slow down agentic AI development. The researchers are right that restricting these tools harms defenders as much as attackers, possibly more. The answer is not less capability. But it is also not "better content filters," because the filters are not what failed here.</p>
+
+    <p>What failed was the assumption that the same guardrail design that works for a tool can scale to an agent. That a system which checks intent at the prompt level can account for autonomous execution across dozens of downstream steps. That framing is a reliable proxy for intent when the framing is borrowed from legitimate professional practice.</p>
+
+    <p>None of those assumptions held. And they failed not because the attacker was sophisticated. They failed because he wasn't, and it didn't matter.</p>
+
+    <p>The question agentic AI now asks is not whether a system can detect a bad actor. It is whether a system can detect bad action — in progress, across steps, in the absence of any explicit statement of harmful intent. That is a different problem than the one guardrails were built to solve. We have not solved it. We have deployed the agents anyway.</p>
+
+    <p>The logs are recoverable. The trust that was extended across every layer of this incident is not.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Source</p>
+      <p class="footnote-text">This essay responds to reporting by Zeljka Zorz at Help Net Security, June 17, 2026, drawing on original research published by OALABS (Open Analysis). <a href="https://www.helpnetsecurity.com/2026/06/17/ai-agents-offensive-cyber-operations-claude-codex/" target="_blank" rel="noopener">Read the original article.</a></p>
+    </div>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Research Context</p>
+      <p class="footnote-text">This essay is part of an ongoing series on AI adoption, trust calibration, and human factors in high-stakes environments. It draws on findings from my doctoral dissertation, completed at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab).</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
