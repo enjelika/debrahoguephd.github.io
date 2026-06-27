@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What the Camera Cannot See — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4a4483854394ed1a464603d4ce90549"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #841617; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  .article-signoff {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  .signoff-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--sans); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer {
+    text-align: center; padding: 3rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 720px; margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap">
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Computer Vision · AI Trust</p>
+  <h1 class="article-title">What the Camera<br/><em>Cannot See</em></h1>
+  <p class="article-subtitle">Designers are building garments that defeat facial recognition. They are working from the same map computer vision researchers have been studying for years.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">6 min read</span>
+    <div class="article-tags">
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Adversarial Design</span>
+      <span class="tag">Surveillance</span>
+      <span class="tag">Human-AI Collaboration</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>In the Netherlands, a designer created a transparent mask that makes the wearer invisible to facial recognition cameras while remaining fully visible to other people. In Japan, a professor fitted a visor with near-infrared LEDs that prevent detection systems from registering a human face at all. In London, a group of artists walked city streets with their faces painted in high-contrast geometric stripes, confusing the cameras watching from above.</p>
+
+    <p>These are not pranks. They are, whether their creators knew it or not, applied computer vision research.</p>
+
+    <h2>The Map Already Existed</h2>
+
+    <p>Computer vision systems have well-documented failure modes. Shadows disrupt segmentation by altering the intensity relationships a system uses to distinguish objects from backgrounds. Mirrors confuse detection pipelines because they carry no stable visual signature of their own, only reflections of whatever surrounds them. Glass presents a compounded version of the same problem: a transparent object inherits the appearance of everything in front of it and behind it simultaneously, giving the system contradictory information about what it is looking at. Water combines both effects, offering neither a consistent surface nor a boundary the system can reliably locate.</p>
+
+    <p>These are not edge cases discovered in the wild. They are known, catalogued, and studied as specific region segmentation problems in the computer vision literature. Researchers have been working around them for years.</p>
+
+    <p>The transparent mask exploits the glass problem directly. A surface that inherits the visual properties of whatever surrounds it gives a detection system nothing stable to classify. The near-infrared visor exploits a sensor gap: it introduces a signal the camera registers but the human eye does not, overwhelming the detection pipeline at the hardware level. The painted patterns exploit the same perceptual disruption that makes natural camouflage difficult to segment: high-contrast coloration that breaks the boundary cues a system uses to locate and define an object.</p>
+
+    <p>Each design found a weakness. None of those weaknesses were secret.</p>
+
+    <div class="pullquote">
+      <p>These garments work not because they fool the camera into seeing something false, but because they give it nothing coherent to see at all.</p>
+    </div>
+
+    <h2>What Camouflage and Couture Have in Common</h2>
+
+    <p>The computer vision problem of detecting camouflaged objects and the surveillance problem of detecting faces are structurally the same. Both require a system to locate a target that is working, by design, against detection. Both fail in predictable ways when the target exploits the seam between what the system measures and what actually constitutes the thing it is looking for.</p>
+
+    <p>Camouflaged objects suppress the edges, contrast gradients, and texture discontinuities that detection algorithms depend on. They do not disappear. They make the system's own feature extraction work against it. Adversarial fashion does the same thing. The painted face does not vanish. It gives the algorithm a set of features that point in so many directions at once that no coherent classification emerges.</p>
+
+    <p>In both cases, the failure is not a bug. It is a consequence of how the system was built: to find signal in the image, under the assumption that signal will be there. Effective camouflage, natural or artificial, is the assumption failing.</p>
+
+    <h2>The Human That Was Not There</h2>
+
+    <p>What makes adversarial fashion work at scale is not the cleverness of the designs. It is the absence of a human being in the loop.</p>
+
+    <p>A person watching a surveillance feed would recognize someone wearing a transparent mask. They would see a face behind a strange visor. They would notice that the painted stripes belong to a person walking down the street. Human vision and human cognition bring contextual reasoning, perceptual grouping, and domain knowledge to the problem that no current detection pipeline fully replicates. The detection failure is specific to the automated system.</p>
+
+    <p>This is precisely why the scale of surveillance makes these garments viable. When hundreds of thousands of cameras are trusted to operate without human review of each match, the failure modes of the underlying system become exploitable at the same scale. The automation creates the opportunity. The known weaknesses provide the method.</p>
+
+    <div class="pullquote">
+      <p>When a system is trusted to operate without a human in the loop, its failure modes become a roadmap.</p>
+    </div>
+
+    <h2>Design as Diagnosis</h2>
+
+    <p>There is something instructive about watching designers, artists, and researchers arrive at the same vulnerabilities that computer vision literature has documented for years. They did not need access to proprietary systems or internal audits. The weaknesses were findable because the systems operate in the world, and the world contains glass, and water, and reflective surfaces, and people willing to wear unusual hats.</p>
+
+    <p>That adversarial fashion exists at all is not primarily a story about privacy activism, though it is partly that. It is a story about what happens when detection systems are deployed at scale without meaningful human oversight. The failures are not new. The conditions that make them consequential are.</p>
+
+    <p>When the human is in the loop, with genuine comprehension rather than deference to the system's output, some of what adversarial fashion exploits stops working. Not all of it. But the gap narrows considerably. The question worth asking is not only how to make these systems more robust, but what it would take to put a human back in a position to actually see what the camera cannot.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">A Note on Perspective</p>
+      <p class="footnote-text">My doctoral research at the University of Oklahoma examined how humans understand and trust AI-assisted detection systems, specifically in the context of camouflaged object detection. The computer vision failure modes described here, shadow, mirror, glass, and water regions as documented challenges for automated segmentation systems, were part of the technical foundation I worked through during that research. That background is why I read adversarial fashion as something other than novelty.</p>
+
+      <p class="footnote-label" style="margin-top: 1.5rem;">Source</p>
+      <p class="footnote-text">Stephen Johnson, "Inventions that are fighting the rise of facial recognition technology," <em>Freethink</em>, October 5, 2022. <a href="https://www.freethink.com/robots-ai/anti-facial-recognition-tech" style="color: var(--muted);">freethink.com</a></p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
