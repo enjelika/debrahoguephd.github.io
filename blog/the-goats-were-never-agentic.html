@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Goats Were Never Agentic — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4a4483854394ed1a464603d4ce90549"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #841617; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .footnote-block {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  .article-signoff {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  .signoff-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; flex-shrink: 0;
+  }
+  .signoff-name { font-family: var(--sans); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer {
+    text-align: center; padding: 3rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 720px; margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article class="article-wrap">
+  <a href="../blog.html" class="article-back">← All Writing</a>
+
+  <p class="article-eyebrow">Essay · Anthropomorphism · AI Trust</p>
+  <h1 class="article-title">The Goats Were<br/><em>Never Agentic</em></h1>
+  <p class="article-subtitle">A Microsoft researcher built a working computer out of Age of Empires II goats to prove a point about language. The point applies just as well to the gap between what people understand about AI and what they trust it to do.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">June 2026</span>
+    <span class="meta-item">5 min read</span>
+    <div class="article-tags">
+      <span class="tag">Anthropomorphism</span>
+      <span class="tag">Trust Calibration</span>
+      <span class="tag">Language Models</span>
+      <span class="tag">Human-AI Collaboration</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>Adrian de Wynter, a researcher at Microsoft, spent two years reading computer science papers about large language models. By his count, 57% of them assumed human-like traits in the technology before a single experiment ran, and 77% of the papers that set out to test for those traits concluded they were there. An assumption built into the premise has a way of finding its way back out as a result.</p>
+
+    <p>De Wynter's response was not another position paper. He opened the scenario editor in <em>Age of Empires II</em>, a real-time strategy game from 1999, and built logic gates out of goats. A goat standing on grass reads as a zero. A goat standing on a bridge reads as a one. Wire enough of these gates together and the goats start carrying information, flipping states, completing circuits. Then he described the whole thing using the same vocabulary AI researchers use for language models. The goats became "agentic." They "cooperated." They "passed information." Read the description without knowing what it referred to, and it sounds like a system that understands something. It is goats walking onto pressure plates.</p>
+
+    <h2>The Trick Was Never in the System</h2>
+
+    <p>What de Wynter's experiment isolates is that the words did the work, not the mechanism. Logic gates made of livestock and logic gates made of silicon produce the same kind of description once you reach for words like "decide" and "communicate." The vocabulary is doing something the underlying process is not. It is supplying a mind where there is only a mechanism, and it is doing it convincingly enough that researchers trained to be skeptical fell for it at a rate of better than three in four when they went looking.</p>
+
+    <p>This is not a new tendency. People see faces in electrical outlets and hear their names called in empty rooms. What is new is that large language models give that tendency something to work with that previous technologies did not: fluent, responsive, conversational output. A goat on a bridge does not talk back. A chat window does. The same anthropomorphizing impulse that finds faces in outlets now has a much better canvas, and the words researchers, journalists, and product teams choose to describe what is happening behind that canvas determine how much of a mind the user assumes is on the other side.</p>
+
+    <div class="pullquote">
+      <p>The vocabulary built a mind where the goats built nothing but a circuit. The danger is that the same vocabulary is doing identical work on systems people actually rely on.</p>
+    </div>
+
+    <h2>Where This Meets the Understanding-Trust Gap</h2>
+
+    <p>My dissertation research found that trust in an AI system and a person's actual comprehension of how it works do not move together. Under time pressure, trust goes up while measured understanding goes down. People were not trusting the system because they understood it. They were trusting it because it behaved in ways that read as competent, confident, and, frequently, intentional.</p>
+
+    <p>De Wynter's goats explain a piece of where that misplaced confidence comes from before a user ever opens an interface. If the language surrounding a system already implies intention, the user starts from a position of attributing a mind, and every subsequent interaction gets interpreted through that frame. A flagged error reads as the system "catching" something. A confident wrong answer reads as a "judgment call" rather than a statistical artifact. None of that is happening because the user is careless. It is happening because the words available to describe the system already did the anthropomorphizing before the user got involved.</p>
+
+    <p>This is also why transparency alone has not closed the gap in my research. Explaining a system's internals does little to correct a misattribution that was never about the internals in the first place. It was about language operating on a much older perceptual habit. A user can read a technically accurate explanation of how a model generates text and still walk away describing the output as something the model "wanted" to say, because the vocabulary of intention is doing more persuasive work than the explanation of mechanism.
+
+    </p>
+
+    <h2>Absurdism as Method</h2>
+
+    <p>De Wynter has said he tends to "dial up things to 11" when he wants to make a point stick, and that absurdism has a real place in computer science and philosophy. The goats work as an argument precisely because they are silly. Nobody believes the goats are agentic. That certainty is the point. If the description sounds intelligent for goats walking across a game map, the description was never proof of intelligence to begin with. It was a vocabulary problem wearing a technical costume.</p>
+
+    <p>The harder case is the one where the underlying system is genuinely sophisticated, where the outputs are fluent and often correct, and where the same anthropomorphic vocabulary is harder to dismiss because it is not attached to anything as obviously absurd as livestock. That is precisely the case where the habit matters most to catch, because the consequences of misplaced trust scale with how much the system is actually relied on.</p>
+
+    <h2>What the Goats Leave Us With</h2>
+
+    <p>The fix is not to strip all human-sounding language from how AI systems get described. Some of that language is genuinely useful shorthand, and insisting on bloodless mechanical descriptions for every interaction is not realistic. The fix is closer to what de Wynter modeled with his own paper: noticing when the vocabulary has run ahead of the evidence, and building in a habit of checking whether a claim of agency, cooperation, or reasoning would still hold up if it were a description of goats on a bridge.</p>
+
+    <p>That habit is a small, specific version of the agency-over-transparency argument I have made elsewhere. Giving a person genuine interactive control over a system, the ability to test it, push back on it, and watch it fail in front of them, does more to correct an inflated mental model than any explanation of what is happening under the hood. The goats never needed a disclaimer. They needed someone to walk onto the bridge and look.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Source</p>
+      <p class="footnote-text">Antonia Davison, "A Microsoft researcher sent some goats on a mission in Age of Empires II to make a point about LLMs," <em>IBM Think</em>, June 26, 2026. <a href="https://www.ibm.com/think/news/microsoft-researcher-age-of-empires-ii-goats-neural-network-llm-anthropomorphism" style="color: var(--muted);">ibm.com/think</a></p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
