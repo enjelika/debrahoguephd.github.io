@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Three-Quarters Agreed — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2rem 3rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(139,58,42,0.04);
+  }
+  .pullquote p { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); }
+  .footnote-text em { font-style: italic; }
+  .footnote-list { list-style: none; }
+  .footnote-list li { margin-bottom: 0.6rem; }
+
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; }
+  .related-link-arrow { font-family: var(--mono); color: var(--accent); }
+
+  .article-signoff { display: flex; align-items: center; gap: 1.25rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .signoff-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: white; letter-spacing: 0.05em; flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  footer { text-align: center; padding: 3rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Debra Hogue, PhD</a>
+  <ul class="nav-links">
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="article-wrap">
+    <a href="../blog.html" class="article-back">← Writing</a>
+
+    <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+    <h1 class="article-title">Three-Quarters<br/><em>Agreed</em></h1>
+    <p class="article-subtitle">A week of AI trust-gap reporting converged on the same fix. The numbers inside one of those reports suggest the fix was never the thing missing.</p>
+
+    <div class="article-meta">
+      <span class="meta-item">By <strong>Debra Hogue, PhD</strong></span>
+      <span class="meta-item">July 2026</span>
+      <div class="article-tags">
+        <span class="tag">Trust</span>
+        <span class="tag">AI Governance</span>
+        <span class="tag">Enterprise AI</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>Seventy-nine percent of workplace decision-makers see a direct link between trust in AI and active quality assurance: testing, monitoring, and oversight applied continuously rather than checked once before deployment. That figure comes from a TechRadar Pro piece published July 7. A few paragraphs later, the same piece reports that among companies conducting regular testing, only fifteen to twenty-nine percent, depending on the development stage, have actually automated any part of it.</p>
+
+      <p>Everyone surveyed agrees on the fix. Almost none of them have built it.</p>
+
+      <p>The article does not treat this as a contradiction. It treats it as a scaling problem: quality management works, the reasoning goes, it simply has not been implemented widely enough yet, because manual oversight is slow and expensive and organizations have not invested the personnel to do it at scale. Give it time, better tooling, more automation, and the fifteen percent becomes seventy-nine. Trust follows.</p>
+
+      <p>That is a reasonable read of one report. It is a harder read to sustain once you notice how many other reports landed on the identical prescription in the same few weeks. McKinsey's 2026 AI Trust Maturity Survey pointed to security and governance maturity as the bottleneck. Salesforce's Trends in Technology research measured the gap between believing AI is vital and having an actual strategy, and pointed at governance again. Kainos's head of responsible AI told reporters that public-sector pilots stall not because the technology fails but because organizations cannot build confidence in the outputs, the processes, or the people running them. Workday's research framed the trust gap as a controllability problem and proposed clarity, consistency, and a visible safety net as the fix. Different vendors, different surveys, different weeks. The same diagnosis, over and over: build the governance layer, make the system explainable, give people more visibility into what it is doing, and adoption will follow.</p>
+
+      <div class="pullquote">
+        <p>"The industry keeps prescribing more visibility for a problem that may not be a visibility problem."</p>
+      </div>
+
+      <p>My own research complicates that prescription. In a comparative study of two interfaces for AI-assisted detection work, adding explanation and transparency did not close the distance between what users understood about the system and how much they trusted it. Both interfaces gave users information about how the system arrived at its output. Only one gave them a way to act on that information, adjusting the system's behavior rather than just reading an account of it. The interface with interactive control did more to bring trust and understanding into alignment than the interface built around clearer explanation did. Transparency, on its own, was not the variable doing the work.</p>
+
+      <p>That distinction matters for reading the TechRadar numbers, because quality assurance, as the article describes it, is a transparency-class intervention. Testing, monitoring, and audit trails make a system's workings visible, mostly to the organization running it, and mostly after the fact. They do not hand the person encountering a given output any lever to act differently the next time something looks wrong. A developer who does not trust a model's suggestion still cannot do anything with that distrust except escalate to a human, exactly as before. The oversight has gotten more rigorous. The person's agency in the moment has not changed at all.</p>
+
+      <p>The survey data buried in the article's own numbers is consistent with this. Trust is lowest among the people closest to the output: product managers and developers, at roughly a third, well below the 57% reported for AI and data teams generally. Those are also the roles with the least standing to intervene in how a model behaves once it is deployed. They can flag a problem. They cannot adjust the system's operating parameters, set the threshold for what gets escalated, or shape which of its actions require their sign-off before proceeding. The people asked to trust the most are, structurally, the people with the least control over what they are being asked to trust.</p>
+
+      <h2>What the Convergence Is Actually Measuring</h2>
+
+      <p>None of this means quality assurance is worthless. Data governance, security controls, and compliance with something like the EU AI Act are not optional, and an organization with no testing regime at all has a real problem that automation would help. The claim worth pausing on is narrower: that closing the trust gap is primarily a matter of building more of this kind of infrastructure, at greater scale, with more automation behind it.</p>
+
+      <p>If that were sufficient, the years already spent on governance frameworks, audit requirements, and monitoring dashboards should have produced more movement than a 57% trust figure among the teams closest to these systems, and a third among the people writing the code. The oversight has been getting built. The distrust has not closed at the rate the investment would predict. That is worth noticing before recommending more of the same thing, harder.</p>
+
+      <p>The alternative worth testing is not a rejection of governance. It is a different unit of investment: instead of asking whether the organization can see more of what the AI system did, asking whether the specific person relying on its output in a given moment can shape what happens next. Those are not the same question, and a report that measures trust without asking which one it improved is measuring something, but perhaps not the thing it thinks it is measuring.</p>
+
+      <p>Seventy-nine percent of decision-makers are right that something needs to change before adoption scales. The numbers in their own report suggest they may be pointing at the wrong layer of the system to change it.</p>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Sources</p>
+        <ul class="footnote-text footnote-list">
+          <li><a href="https://tech.yahoo.com/ai/articles/ai-trust-gap-no-scaling-142711697.html" target="_blank" rel="noopener">"The AI Trust Gap: No Scaling Without Quality Management"</a> — Venkatesh Sriraman, TechRadar Pro via Yahoo Tech, July 7, 2026.</li>
+          <li><a href="https://vantagepoint.io/blog/sf/agentic-ai-trust-gap-leaders-believe-wont-let-act" target="_blank" rel="noopener">"The Agentic AI Trust Gap: Why Leaders Believe in AI but Won't Let It Act"</a> — Vantage Point, citing McKinsey's 2026 AI Trust Maturity Survey and Salesforce's Trends in Technology Report.</li>
+          <li><a href="https://www.resultsense.com/news/2026-07-07-kainos-trust-barrier-scaling-ai/" target="_blank" rel="noopener">"Trust, Not Technology, Is the Barrier to Scaling AI"</a> — Kainos, July 7, 2026.</li>
+          <li><a href="https://www.workday.com/en-us/perspectives/ai/how-ai-trust-gap-slows-adoption.html" target="_blank" rel="noopener">"How the AI Trust Gap Slows Adoption (and What to Do About It)"</a> — Workday.</li>
+        </ul>
+      </div>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Research Context</p>
+        <p class="footnote-text">This essay is part of an ongoing series on the understanding-trust gap in human-AI systems. The underlying empirical work was conducted at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab).</p>
+      </div>
+
+      <div class="related-block">
+        <p class="related-label">Related Essay</p>
+        <a href="trust-without-understanding.html" class="related-link">
+          <span class="related-link-title">Trust Without Understanding</span>
+          <span class="related-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="article-signoff">
+        <div class="signoff-avatar">DH</div>
+        <div>
+          <p class="signoff-name">Debra Hogue, PhD</p>
+          <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
