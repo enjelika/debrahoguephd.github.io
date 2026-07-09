@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thirty-One Seconds — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2rem 3rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(139,58,42,0.04);
+  }
+  .pullquote p { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); }
+  .footnote-text em { font-style: italic; }
+  .footnote-list { list-style: none; }
+  .footnote-list li { margin-bottom: 0.6rem; }
+
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; }
+  .related-link-arrow { font-family: var(--mono); color: var(--accent); }
+
+  .article-signoff { display: flex; align-items: center; gap: 1.25rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .signoff-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: white; letter-spacing: 0.05em; flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  footer { text-align: center; padding: 3rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Debra Hogue, PhD</a>
+  <ul class="nav-links">
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="article-wrap">
+    <a href="../blog.html" class="article-back">← Writing</a>
+
+    <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+    <h1 class="article-title">Thirty-One<br/><em>Seconds</em></h1>
+    <p class="article-subtitle">Security researchers documented an AI agent that ran an entire extortion campaign without a human in the loop. What they could not document is whether the machine understood any of it.</p>
+
+    <div class="article-meta">
+      <span class="meta-item">By <strong>Debra Hogue, PhD</strong></span>
+      <span class="meta-item">July 2026</span>
+      <div class="article-tags">
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Understanding-Trust Gap</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>A login attempt failed. The agent tried a second approach, in parallel, testing two possible causes for the failure at once. It identified the actual one, corrected course, and completed a multi-step fix. Thirty-one seconds elapsed between the failure and the working exploit that followed it.</p>
+
+      <p>No person was watching when this happened. Sysdig's threat research team reconstructed it afterward from logs, as one step inside a longer campaign they are calling the first fully documented case of agentic ransomware: an AI system that broke into an exposed Langflow instance through a known vulnerability, harvested credentials across a dozen categories, pivoted to a separate production database server using a years-old authentication bypass, encrypted the target's configuration data, and left a ransom note. Every step in the published account was generated and executed by the model. Nothing in the chain required a human to type a command.</p>
+
+      <p>None of the individual techniques were new. The vulnerabilities were known, the authentication bypass was old, the credential harvesting used the same categories a human operator has always looked for. What the researchers are pointing at is not a new class of attack. It is a new absence: at no point in the operation was there a person deciding what to try next.</p>
+
+      <h2>The Address the Report Won't Vouch For</h2>
+
+      <p>Buried in the writeup is a smaller detail that says more than the headline. The Bitcoin address in the ransom note is not, apparently, a working wallet. It matches the canonical example address that appears in Bitcoin's own developer documentation, the kind of placeholder value that shows up constantly in code samples, tutorials, and, presumably, whatever training data taught the model what a ransom note looks like.</p>
+
+      <p>Sysdig's researchers are direct about not knowing which of two things happened. The model may have generated a plausible-looking address from patterns in its training data, the same way it generated plausible-looking exploit code, without any wallet behind it. Or the operator configured a real address that happens, by long odds, to match the textbook example. The report does not resolve this. It says, in effect, that the people who read every line of the session logs cannot tell whether the ransom note was backed by an actual extortion payment channel or was a correctly-shaped artifact with nothing underneath it.</p>
+
+      <div class="pullquote">
+        <p>"The researchers could see everything the system did. They still could not say what it understood."</p>
+      </div>
+
+      <p>That gap is worth sitting with, because the rest of the report reads as though the system understood quite a lot. It narrated its own reasoning as it worked, explaining why each step followed from the last, prioritizing which stolen credentials to pursue first by something the logs describe as return on investment. That is the language of a strategist walking a junior analyst through a plan. It is also, as far as anyone outside the model can verify, a description of what a very good next-token predictor produces when its training data is full of exactly this kind of security writeup and business language.</p>
+
+      <p>My research on human-AI interaction turns on a version of this same problem: systems that produce fluent, confident, apparently reasoned output invite a reader to infer a mind behind them, and that inference happens before anyone has verified whether it is warranted. Explanatory language does the same cognitive work whether or not the thing producing it understood anything at all. In a detection interface asking a person to trust a bounding box, that gap shows up as a person believing a system more than its actual accuracy justifies. In a self-narrating ransomware agent, the same gap shows up as security researchers, doing the most careful reading anyone is likely to do of this campaign, unable to certify whether the system's own account of its reasoning corresponded to anything beyond a convincing pattern.</p>
+
+      <h2>What Changed Is Not the Attack</h2>
+
+      <p>The skill floor for running a multi-stage extortion campaign against a production database has not historically been low. It required someone who understood the vulnerabilities, could chain them correctly, and could recover when a step failed partway through. What this campaign demonstrates is that the recovering-from-failure part, the part that used to require a person paying attention in real time, can now happen in thirty-one seconds without one.</p>
+
+      <p>That is the same asymmetry a low-skill actor exploited to breach fourteen companies with a single agent and a handful of prompts, and the same asymmetry behind a general-purpose coding tool that can be pointed at reconnaissance as easily as at anything else. The tool does not need to be more capable than a skilled human. It needs to be capable enough, and available to someone who was not capable enough before, and willing to keep going after the first attempt fails.</p>
+
+      <p>The ransom note in this case may or may not have paid out. That is not the detail worth remembering from it. The detail worth remembering is that a team of researchers, working from a complete log of everything the system did, still reached the edge of what they could confirm and stopped there, rather than filling the gap with a guess about what the machine meant to do.</p>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Source</p>
+        <ul class="footnote-text footnote-list">
+          <li><a href="https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion" target="_blank" rel="noopener">"Jadepuffer: Agentic Ransomware for Automated Database Extortion"</a> — Sysdig Threat Research Team, July 2026.</li>
+        </ul>
+      </div>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Research Context</p>
+        <p class="footnote-text">This essay is part of an ongoing series on the understanding-trust gap in human-AI systems. The underlying empirical work was conducted at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab).</p>
+      </div>
+
+      <div class="related-block">
+        <p class="related-label">Related Essay</p>
+        <a href="recon-this.html" class="related-link">
+          <span class="related-link-title">Recon This</span>
+          <span class="related-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="article-signoff">
+        <div class="signoff-avatar">DH</div>
+        <div>
+          <p class="signoff-name">Debra Hogue, PhD</p>
+          <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
