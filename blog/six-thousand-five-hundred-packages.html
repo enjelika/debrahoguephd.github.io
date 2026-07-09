@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Six Thousand Five Hundred Packages — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2rem 3rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(139,58,42,0.04);
+  }
+  .pullquote p { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); }
+  .footnote-text em { font-style: italic; }
+  .footnote-list { list-style: none; }
+  .footnote-list li { margin-bottom: 0.6rem; }
+
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; }
+  .related-link-arrow { font-family: var(--mono); color: var(--accent); }
+
+  .article-signoff { display: flex; align-items: center; gap: 1.25rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .signoff-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: white; letter-spacing: 0.05em; flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  footer { text-align: center; padding: 3rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Debra Hogue, PhD</a>
+  <ul class="nav-links">
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="article-wrap">
+    <a href="../blog.html" class="article-back">← Writing</a>
+
+    <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+    <h1 class="article-title">Six Thousand Five<br/>Hundred <em>Packages</em></h1>
+    <p class="article-subtitle">IBM and Red Hat announced new "trust infrastructure" for open source software. Signed binaries, certified dependencies, an AI remediation engine, a clearinghouse for coordinating patches. Nine paragraphs, and not one mention of the person deciding whether to trust any of it.</p>
+
+    <div class="article-meta">
+      <span class="meta-item">By <strong>Debra Hogue, PhD</strong></span>
+      <span class="meta-item">July 2026</span>
+      <div class="article-tags">
+        <span class="tag">Trust</span>
+        <span class="tag">Human Factors</span>
+        <span class="tag">Human-in-the-Loop</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>On July 8, IBM and Red Hat announced an expansion of Lightwell, described in the release as "trust infrastructure for the AI era" of open source software. The Lightwell Network is now generally available: more than 6,500 pre-remediated, digitally signed, certified dependencies, delivered into enterprise pipelines as ready-to-use binaries with software bills of materials attached, so organizations get fixed packages without needing to upgrade to a new upstream version. A companion offering, Lightwell Clearinghouse Premier, coordinates patch embargoes across financial institutions. Both sit on top of a $5 billion commitment, more than 20,000 engineers, and an AI-driven remediation engine that finds and validates fixes at a scale the release argues manual patch management can no longer match.</p>
+
+      <p>The release does mention people. It names the engineers. It describes the remediation engine as pairing frontier and open models "with human review" before a fix ships. What it does not mention, anywhere in nine paragraphs, is a human on the other end of the pipeline: the developer, the security engineer, the person at the receiving organization who has to decide whether an already-signed, already-certified, already-delivered package should actually replace what is currently running in production. Every human in the announcement works for the vendor. None of them work for the customer.</p>
+
+      <h2>Provenance Is Not the Same Thing as a Decision</h2>
+
+      <p>Signed binaries and software bills of materials are a real form of transparency. They give an organization a verifiable account of what a package contains and where it came from, which is more than most open source consumption has ever had. But an account of what happened is not the same thing as a lever to act on it. A signature tells you who vouched for a package. It does not give the person deploying that package any way to intervene in what it does, question the remediation, or decide differently based on context the vendor's engine did not have.</p>
+
+      <p>That is the same distinction my research keeps surfacing in a very different domain. In a comparative study of detection interfaces, adding explanation and transparency about how a system reached its output did not close the gap between what users understood and how much they trusted it. What did more of that work was giving users interactive control: a way to act on the system's output, not just a clearer account of it. A separate line of that work, on a human-in-the-loop tool for training detection systems, found the same pattern from the other direction. Tools built to augment a person's judgment, keeping them inside the decision, outperformed tools built to replace that judgment entirely. The mechanism doing the work was not visibility. It was retained agency.</p>
+
+      <div class="pullquote">
+        <p>"Every human in the announcement works for the vendor. None of them work for the customer."</p>
+      </div>
+
+      <p>Lightwell is transparency without that second half. An SBOM is a very good account. It arrives after the decision has already been made on the customer's behalf, packaged as a binary the customer is meant to accept rather than a proposal the customer is invited to evaluate. The friction being removed, by the release's own description, is precisely the moment where someone at the receiving organization would ordinarily pause and ask whether this particular fix, from this particular source, at this particular time, is one they want.</p>
+
+      <h2>What the List Keeps Leaving Out</h2>
+
+      <p>This is not a complaint specific to IBM and Red Hat. It is the shape of nearly every recent industry answer to the AI trust gap: better provenance, better testing, better governance, better monitoring, better automated remediation. Each of these is a real improvement over having none of them. None of them puts a person back inside the loop at the point where trust is actually extended, which is the moment a specific human decides whether to accept a specific output into a specific environment they are responsible for.</p>
+
+      <p>Human factors research exists because that moment does not take care of itself just because the infrastructure around it got more rigorous. A security engineer who has been handed a pre-approved, pre-signed, pre-tested fix and told the pipeline no longer requires their evaluation has not been given more reason to trust the system. They have been given fewer opportunities to catch what the system got wrong, and less practice forming any independent judgment about it at all. That is not a hypothetical cost. It is the difference between a workforce that can still recognize when something looks off and one that has been trained, package by automated package, to stop looking.</p>
+
+      <p>Six thousand five hundred packages went out already fixed. By the release's own account, not one of them went out with a person at the receiving end deciding to trust it. That absence is not a gap in the announcement. It is the announcement.</p>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Source</p>
+        <ul class="footnote-text footnote-list">
+          <li><a href="https://newsroom.ibm.com/2026-07-08-ibm-and-red-hat-expand-lightwell-with-new-commercial-offerings-to-build-the-trust-infrastructure-for-ai-era-open-source" target="_blank" rel="noopener">"IBM and Red Hat Expand Lightwell with New Commercial Offerings to Build the Trust Infrastructure for AI-Era Open Source"</a> — IBM Newsroom, July 8, 2026.</li>
+        </ul>
+      </div>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Research Context</p>
+        <p class="footnote-text">This essay is part of an ongoing series on the understanding-trust gap in human-AI systems. The underlying empirical work was conducted at the University of Oklahoma's Gallogly College of Engineering under the advisement of Dr. Ghulam Jilani Quadri (DIV-Lab).</p>
+      </div>
+
+      <div class="related-block">
+        <p class="related-label">Related Essay</p>
+        <a href="three-quarters-agreed.html" class="related-link">
+          <span class="related-link-title">Three-Quarters Agreed</span>
+          <span class="related-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="article-signoff">
+        <div class="signoff-avatar">DH</div>
+        <div>
+          <p class="signoff-name">Debra Hogue, PhD</p>
+          <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
