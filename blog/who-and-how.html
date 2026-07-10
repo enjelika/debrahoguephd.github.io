@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Who and How — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2rem 3rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(139,58,42,0.04);
+  }
+  .pullquote p { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); }
+  .footnote-text em { font-style: italic; }
+  .footnote-list { list-style: none; }
+  .footnote-list li { margin-bottom: 0.6rem; }
+
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; }
+  .related-link-arrow { font-family: var(--mono); color: var(--accent); }
+
+  .article-signoff { display: flex; align-items: center; gap: 1.25rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .signoff-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: white; letter-spacing: 0.05em; flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  footer { text-align: center; padding: 3rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Debra Hogue, PhD</a>
+  <ul class="nav-links">
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="article-wrap">
+    <a href="../blog.html" class="article-back">← Writing</a>
+
+    <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+    <h1 class="article-title">Who and <em>How</em></h1>
+    <p class="article-subtitle">A new UN initiative on trust in AI agents opens by naming two questions that earlier trust efforts kept collapsing into one. That, more than anything it has built yet, is worth being glad about.</p>
+
+    <div class="article-meta">
+      <span class="meta-item">By <strong>Debra Hogue, PhD</strong></span>
+      <span class="meta-item">July 2026</span>
+      <div class="article-tags">
+        <span class="tag">Trust</span>
+        <span class="tag">AI Governance</span>
+        <span class="tag">Human-in-the-Loop</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>At the AI for Good Global Summit in Geneva today, the International Telecommunication Union, the UN's agency for digital technologies, announced a new Focus Group on Trust and Identity for Humans and Agentic AI. Nothing about the group's structure is unusual for a standards body: a slate of technical, policy, and legal experts, a first meeting in Paris in November, a second in Geneva in January, a reporting line up into ITU's existing security standards study group. What is unusual is the sentence its co-chair used to describe the charter. "Identity tells us who is acting," said Amir Banifatemi, "and trustworthiness tells us how that actor can be expected to behave."</p>
+
+      <p>Two words, assigned deliberately to two different questions, are meant to anchor everything the group builds from here. That distinction is worth pausing on, because most of what has passed for AI trust infrastructure this year has quietly treated those two questions as one. Signed binaries, software bills of materials, certified dependencies, audit trails: all of it answers the identity question well. It tells an organization what a system is, where it came from, and who vouched for it. None of it, on its own, answers whether that system's behavior can be trusted going forward, or gives the person relying on it any way to act if the answer turns out to be no. A great deal of recent trust-building has been identity work wearing trustworthiness's name.</p>
+
+      <div class="pullquote">
+        <p>"Identity tells us who is acting, and trustworthiness tells us how that actor can be expected to behave."</p>
+      </div>
+
+      <p>The ITU's founding language does not make that substitution. Alongside identity and trustworthiness, the group names a third explicit goal: keeping AI agents subject to meaningful human control, particularly where the stakes are highest, in financial transactions and critical infrastructure. Control is a different kind of word than monitor, or verify, or audit. It points at an ongoing capacity for a person to act, not an account produced after the fact of what already happened.</p>
+
+      <h2>Why the Sequencing Matters</h2>
+
+      <p>A comparative study I ran on two interfaces for AI-assisted detection work found something relevant here: giving people a clearer explanation of how a system reached its output did less to align trust with actual understanding than giving them a way to act on the system directly. Explanation, however thorough, is still a form of identity: an account of what the system is and did. What closed the gap was agency: a lever, not just a window. Seeing that same distinction, unprompted, written into the founding charter of an international standards effort is a genuinely encouraging sign, and not a small one.</p>
+
+      <p>It is encouraging in part because standards bodies tend to build toward whatever they name at the outset. A group that opens by defining trust as a monitoring and verification problem will spend its first years producing better monitoring and verification. A group that opens by naming control as a first-class, co-equal deliverable, standing alongside identity rather than folded into it, has given itself a real chance of landing somewhere those earlier efforts didn't. Nothing has been built yet. The Focus Group's first meeting is four months away. But the direction a standards process points at the start tends to be the direction it arrives at, and this one is pointed at the right place.</p>
+
+      <p>There is reason for patience alongside the optimism. "Meaningful human control" is a phrase easy to state and hard to operationalize, and it would not be the first time a promising charter resolved, two years later, into a sign-off checkbox indistinguishable from the audit logs it was meant to improve on. Co-chair Debora Comparin's framing, that AI agents will soon negotiate, transact, and make decisions on our behalf, is itself a reminder of how much is riding on getting the operational definition right rather than just the founding language.</p>
+
+      <p>But founding language is where every framework starts, and this one started by refusing to let three different questions collapse into one. Paris in November, Geneva in January: two cities, two meetings, and a working group that will spend them arguing over what who, how, and control actually mean before anyone tries to build the thing. That is a slower start than a press release promising an already-shipped solution. It is also, for once, the right order to do the work in.</p>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Sources</p>
+        <ul class="footnote-text footnote-list">
+          <li><a href="https://www.reuters.com/legal/litigation/un-digital-tech-agency-launches-initiative-improve-trust-ai-agents-2026-07-09/" target="_blank" rel="noopener">"UN Digital Tech Agency Launches Initiative to Improve Trust in AI Agents"</a> — Reuters, July 9, 2026.</li>
+          <li><a href="https://www.miragenews.com/itu-unveils-global-ai-standards-for-trust-1707644/" target="_blank" rel="noopener">"ITU Unveils Global AI Standards for Trust"</a> — Mirage News / ITU, July 9, 2026.</li>
+        </ul>
+      </div>
+
+      <div class="related-block">
+        <p class="related-label">Related Essay</p>
+        <a href="six-thousand-five-hundred-packages.html" class="related-link">
+          <span class="related-link-title">Six Thousand Five Hundred Packages</span>
+          <span class="related-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="article-signoff">
+        <div class="signoff-avatar">DH</div>
+        <div>
+          <p class="signoff-name">Debra Hogue, PhD</p>
+          <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
