@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sally Will Remain Seated — Dr. Debra Hogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1612; --paper: #f5f0e8; --warm-mid: #c8b89a;
+    --accent: #8b3a2a; --accent-light: #c4614e; --rule: #d4c9b5;
+    --muted: #7a7065; --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem; background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2rem 3rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(139,58,42,0.04);
+  }
+  .pullquote p { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+  .footnote-text a { color: var(--accent); }
+  .footnote-text em { font-style: italic; }
+  .footnote-list { list-style: none; }
+  .footnote-list li { margin-bottom: 0.6rem; }
+
+  .related-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .related-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .related-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); }
+  .related-link-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; }
+  .related-link-arrow { font-family: var(--mono); color: var(--accent); }
+
+  .article-signoff { display: flex; align-items: center; gap: 1.25rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .signoff-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: white; letter-spacing: 0.05em; flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; }
+  .signoff-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  footer { text-align: center; padding: 3rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .article-wrap { padding: 7rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Debra Hogue, PhD</a>
+  <ul class="nav-links">
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond</a></li>
+  </ul>
+</nav>
+
+<article>
+  <div class="article-wrap">
+    <a href="../blog.html" class="article-back">← Writing</a>
+
+    <p class="article-eyebrow">Essay · Human-AI Collaboration</p>
+    <h1 class="article-title">Sally Will<br/><em>Remain Seated</em></h1>
+    <p class="article-subtitle">A rural New York district is putting a humanoid robot in the classroom this fall. The disclosures are thorough. The one thing nobody has described is what a student or teacher can do about it.</p>
+
+    <div class="article-meta">
+      <span class="meta-item">By <strong>Debra Hogue, PhD</strong></span>
+      <span class="meta-item">July 2026</span>
+      <div class="article-tags">
+        <span class="tag">Education</span>
+        <span class="tag">Anthropomorphism</span>
+        <span class="tag">Agency</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>When students return this fall to Salamanca High School, on the Seneca Nation reservation in Western New York, a robot named Sally will be seated at the front of the room. She has silicone skin and long brown hair. She can make a wide range of facial expressions and gestures. She will not stand, and she will not walk. She will teach coding, robotics, and AI classes to eleventh and twelfth graders, developed by a Toronto robotics company called Realbotix, at a cost to the district of $57,590.</p>
+
+      <p>The district has been careful about what it says next. Sally will not replace the classroom teacher. She will not collect personal data, record audio or video, or send information anywhere. She will operate under district and teacher oversight, with what the company describes as education-specific safeguards. The superintendent called the decision exciting and nerve-wracking in the same sentence, and compared the backlash to the objections once raised against giving teachers email accounts.</p>
+
+      <p>Every one of those statements is an answer to a question about what Sally is and what she does. None of them answers the question of what a teacher or a student can do to her, or with her, once she is in the room.</p>
+
+      <h2>The Disclosures Are the Easy Part</h2>
+
+      <p>Disclosure is the layer of trust that is cheapest to build and easiest to publicize. You say what the system will not do. You name the safeguards. You put a statement on the school website. All of that is the identity layer of trust: here is what this thing is, here is what it is not, trust us that we have described it accurately.</p>
+
+      <p>What is absent from every account of this deployment is the agency layer: whether a teacher can redirect Sally mid-lesson, override a response, or turn her off without filing a request. Whether a student can decline to work with the robot and default to a human instructor instead. Whether the AI teaching assistant program tied to her, which lets students interact with her avatar on their own laptops, gives a student any say over how much of a given lesson runs through that avatar versus a person. None of the coverage of this rollout mentions an override, an opt-out, or a control a user of the system actually holds.</p>
+
+      <div class="pullquote">
+        <p>"Here is what this thing is, here is what it is not" is a different promise than "here is what you can do about it."</p>
+      </div>
+
+      <p>Disclosure and control are not the same variable, and a system can be maximally disclosed and minimally controllable at the same time. A statement of what a robot will not do is not evidence of what a person facing it can do.</p>
+
+      <h2>The Face Is Doing Work Before the Lesson Starts</h2>
+
+      <p>Silicone skin and long brown hair are not incidental design choices. A humanoid face invites a category of trust that a laptop dashboard does not: the same instinct that reads intention into a furrowed brow reads competence, warmth, or authority into an expressive robot face, regardless of what is actually happening in the system behind it. That priming happens before a single lesson is taught, independent of whether Sally teaches coding well.</p>
+
+      <p>This is worth naming precisely because the stated purpose here is good. STEM access in a small, under-resourced rural district is a real problem, and a tool that can extend instructional capacity in coding and robotics classes is not a frivolous use of technology. The concern is not that Salamanca chose badly. It is that a lifelike, expressive interface can carry an emotional register that a plain disclosure statement cannot counteract, and the district's public reassurances, however sincere, are addressed to the identity question rather than the agency one.</p>
+
+      <h2>Who Gets to Be First</h2>
+
+      <p>Salamanca is the only incorporated U.S. city located entirely on a Native American reservation, and this district will be among the first in the country to put a humanoid robot in a classroom. That fact has already drawn scrutiny from people concerned about where frontier deployments land first, and the district posted a public statement last month specifically to address it. I don't think the answer is that a rural, resource-constrained community should be barred from adopting tools that might help its students. I think the answer is that when a community is asked to go first, the people inside it deserve more than a promise about what the technology will refrain from doing. They deserve a specific, named account of what they can do to it, on their own terms, once it arrives.</p>
+
+      <p>That account does not yet exist in anything published about Sally. Until it does, "will never replace teachers, staff members, or meaningful human interaction" is a statement about the robot's job description. It is not yet a statement about anyone's control.</p>
+
+      <div class="footnote-block">
+        <p class="footnote-label">Sources</p>
+        <ul class="footnote-text footnote-list">
+          <li><a href="https://dailycaller.com/2026/07/20/new-york-salamanca-school-district-robot-ai-classroom-sally-realbotix/" target="_blank" rel="noopener">"New York School District Plans To Bring Humanoid Teacher Robot Into The Classroom"</a> — The Daily Caller, July 2026.</li>
+          <li><a href="https://nysfocus.com/2026/07/14/new-york-humanoid-robot-teacher-salamanca-school-district" target="_blank" rel="noopener">"Rural NY School To Launch Humanoid Robot Teacher"</a> — New York Focus, July 2026.</li>
+        </ul>
+      </div>
+
+      <div class="related-block">
+        <p class="related-label">Related Essay</p>
+        <a href="ai-should-happen-with-us.html" class="related-link">
+          <span class="related-link-title">AI Should Happen With Us</span>
+          <span class="related-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="article-signoff">
+        <div class="signoff-avatar">DH</div>
+        <div>
+          <p class="signoff-name">Debra Hogue, PhD</p>
+          <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span>© 2026 Dr. Debra Hogue</span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
+</footer>
+
+</body>
+</html>
