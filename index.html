@@ -259,6 +259,17 @@
   }
   .stat:last-child { border-right: none; }
 
+  .stat-full {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid var(--rule);
+  }
+
+  .stat-full .stat-num {
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+
   .stat-num {
     font-family: var(--serif);
     font-size: 1.9rem;
@@ -704,10 +715,10 @@
       </li>
 
       <li class="pub-item">
-        <span class="pub-year">2026<br/>In Prep</span>
+        <span class="pub-year">2026<br/>Under Review</span>
         <div>
           <p class="pub-title">Multi-Architecture Evaluation of Stable Diffusion with HSV–Gestalt Perceptual Loss</p>
-          <p class="pub-venue">Target Venue TBD <span class="pub-badge progress">In Preparation</span></p>
+          <p class="pub-venue">IEEE Computer Graphics and Applications <span class="pub-badge review">Under Review</span></p>
           <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;color:var(--muted);margin-top:0.3rem;">Hogue, D., Elliott, D.S., &amp; Quadri, G.J.</p>
         </div>
       </li>
@@ -763,17 +774,17 @@
       </div>
       <div class="tl-awards">
         <div class="award-item">
-          <div class="award-icon">🏅</div>
-          <div>
-            <p class="award-title">Dissertation Excellence Award</p>
-            <p class="award-detail">Gallogly College of Engineering · University of Oklahoma · 2026</p>
-          </div>
-        </div>
-        <div class="award-item">
           <div class="award-icon">🏛️</div>
           <div>
             <p class="award-title">PhD, Computer Science</p>
             <p class="award-detail">University of Oklahoma · Gallogly College of Engineering · 2026</p>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥇</div>
+          <div>
+            <p class="award-title">Dissertation Excellence Award</p>
+            <p class="award-detail">Gallogly College of Engineering · August 2026</p>
           </div>
         </div>
         <div class="award-item">
@@ -814,20 +825,20 @@
   <div class="section-inner">
     <p class="section-label">Latest Writing</p>
     <h2 class="section-heading">From the blog</h2>
-    <a href="blog/crisis-adoption-problem.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);transition:box-shadow 0.25s;" onmouseover="this.style.boxShadow='6px 6px 0 var(--rule)'" onmouseout="this.style.boxShadow='none'">
+    <a href="blog/zugzegk.html" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);transition:box-shadow 0.25s;" onmouseover="this.style.boxShadow='6px 6px 0 var(--rule)'" onmouseout="this.style.boxShadow='none'">
       <div style="padding:2.5rem;border-right:1px solid var(--rule);">
-        <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">★ Featured Essay · June 2026</p>
-        <h3 style="font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;line-height:1.25;margin-bottom:1rem;">The Crisis Adoption Problem</h3>
-        <p style="font-size:0.92rem;line-height:1.8;color:#4a4540;margin-bottom:1.75rem;">We reach for AI hardest when we can least afford to get it wrong. Organizations adopt new AI tools fastest under crisis conditions — exactly when careful evaluation and trust calibration are most important, and most scarce.</p>
+        <p style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;">★ Featured Essay · September 2026</p>
+        <h3 style="font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;line-height:1.25;margin-bottom:1rem;">Zugzegk</h3>
+        <p style="font-size:0.92rem;line-height:1.8;color:#4a4540;margin-bottom:1.75rem;">A word Jimmy Fallon couldn't pronounce, a song nobody had heard before, and the same question I keep coming back to about what a machine could and couldn't have done instead.</p>
         <span style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);">Read Essay →</span>
       </div>
       <div style="padding:2.5rem;background:var(--paper);display:flex;flex-direction:column;justify-content:space-between;">
         <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
-          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">AI Adoption</span>
-          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">Trust Calibration</span>
-          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">Human Factors</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">AI & Creativity</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">Authenticity</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border:1px solid var(--rule);color:var(--muted);">Music</span>
         </div>
-        <p style="font-family:var(--serif);font-size:1.1rem;font-style:italic;line-height:1.5;color:var(--ink);padding-top:1.5rem;border-top:1px solid var(--rule);">"The conditions that make AI adoption feel most urgent are precisely those that make careful evaluation least likely."</p>
+        <p style="font-family:var(--serif);font-size:1.1rem;font-style:italic;line-height:1.5;color:var(--ink);padding-top:1.5rem;border-top:1px solid var(--rule);">"A song that has never been played before is a different kind of object than a song that has always already existed."</p>
       </div>
     </a>
     <div style="text-align:center;margin-top:2.5rem;">
