@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Writing — Dr. Debra Hogue</title>
+<title>Zugzegk — Dr. Debra Hogue</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -31,67 +31,79 @@
   .nav-logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .nav-links a:hover { color: var(--accent); }
 
-  .page-hero {
-    max-width: 1100px; margin: 0 auto;
-    padding: 10rem 3rem 5rem;
-    border-bottom: 1px solid var(--rule);
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 9rem 3rem 7rem; }
+
+  .article-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; transition: color 0.2s; }
+  .article-back:hover { color: var(--accent); }
+  .article-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .article-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+  .article-title em { font-style: italic; color: var(--accent); }
+  .article-subtitle { font-family: var(--serif); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+  .article-meta { display: flex; gap: 2rem; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .meta-item { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta-item strong { color: var(--ink); }
+  .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
+
+  .article-body { font-size: 1.05rem; line-height: 1.9; color: #2e2a25; }
+  .article-body p { margin-bottom: 1.75rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; line-height: 1.25; margin: 3rem 0 1.25rem; color: var(--ink); }
+  .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; margin: 2.5rem 0 1rem; color: var(--ink); }
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+  .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: opacity 0.2s; }
+  .article-body a:hover { opacity: 0.7; }
+
+  .pullquote {
+    margin: 3rem -2rem;
+    padding: 2.5rem 3rem;
+    background: #ede7da;
+    border-left: 3px solid var(--accent);
   }
-  .page-eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-  .page-title { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
-  .page-title em { font-style: italic; color: var(--accent); }
-  .page-desc { font-size: 1rem; line-height: 1.8; color: #4a4540; max-width: 60ch; }
-
-  .posts-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 7rem; }
-
-  /* FEATURED POST */
-  .featured-post {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    border: 1px solid var(--rule); margin-bottom: 4rem;
-    transition: box-shadow 0.25s;
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 0 !important;
   }
-  .featured-post:hover { box-shadow: 6px 6px 0 var(--rule); }
-  .featured-post-content { padding: 3rem; border-right: 1px solid var(--rule); }
-  .featured-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .featured-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.25; margin-bottom: 1rem; }
-  .featured-excerpt { font-size: 0.92rem; line-height: 1.8; color: #4a4540; margin-bottom: 1.75rem; }
-  .read-more { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; color: var(--accent); display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.2s; }
-  .read-more:hover { gap: 0.9rem; }
-  .featured-meta { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; background: #ede7da; }
-  .featured-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-  .featured-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: auto; }
-  .tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border: 1px solid var(--rule); color: var(--muted); }
-  .featured-quote { font-family: var(--serif); font-size: 1.15rem; font-style: italic; line-height: 1.5; color: var(--ink); margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
 
-  /* POST LIST */
-  .posts-heading { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-  .posts-heading::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
-  .post-list { list-style: none; }
-  .post-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 100px 1fr auto; gap: 2rem; align-items: center; }
-  .post-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-  .post-title-link { text-decoration: none; color: inherit; }
-  .post-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.4rem; line-height: 1.3; transition: color 0.2s; }
-  .post-title-link:hover .post-title { color: var(--accent); }
-  .post-summary { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .post-arrow { font-family: var(--mono); font-size: 0.8rem; color: var(--rule); transition: color 0.2s, transform 0.2s; }
-  .post-title-link:hover ~ .post-arrow,
-  .post-item:hover .post-arrow { color: var(--accent); transform: translateX(4px); }
+  .video-embed {
+    margin: 3rem 0;
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    background: #ede7da;
+  }
+  .video-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .video-title { font-family: var(--serif); font-size: 1.1rem; font-style: italic; margin-bottom: 1rem; }
+  .video-frame { position: relative; width: 100%; padding-top: 56.25%; border: 1px solid var(--rule); background: #000; overflow: hidden; }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-link { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); display: inline-block; margin-top: 1rem; }
+  .video-link:hover { opacity: 0.7; }
 
-  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; }
+  .footnote-block { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .footnote-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .footnote-text { font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  .article-signoff { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); display: flex; gap: 1.5rem; align-items: center; }
+  .signoff-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #c4b8a4, #8b3a2a); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.3rem; color: var(--paper); flex-shrink: 0; }
+  .signoff-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .signoff-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; margin-top: 5rem; }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .fade-in { opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
-    .page-hero, .posts-body { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .page-hero { padding-top: 8rem; }
-    .featured-post { grid-template-columns: 1fr; }
-    .featured-post-content { border-right: none; border-bottom: 1px solid var(--rule); }
-    .post-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    .post-date { display: none; }
+    .article-wrap { padding: 8rem 1.5rem 5rem; }
+    .pullquote { margin: 2rem 0; padding: 1.75rem 1.5rem; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 </style>
@@ -99,222 +111,93 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Dr. Debra Hogue</a>
+  <a href="../index.html" class="nav-logo">Dr. Debra Hogue</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="research.html">Research & CV</a></li>
-    <li><a href="blog.html" class="active">Writing</a></li>
-    <li><a href="beyond.html">Beyond the Lab</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../research.html">Research & CV</a></li>
+    <li><a href="../blog.html">Writing</a></li>
+    <li><a href="../beyond.html">Beyond the Lab</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
   </ul>
 </nav>
 
-<div class="page-hero fade-in">
-  <p class="page-eyebrow">Thought Leadership</p>
-  <h1 class="page-title">Ideas on Human–<em>AI</em><br/>Collaboration</h1>
-  <p class="page-desc">Original thinking at the intersection of research, practice, and the messy reality of how people actually work with intelligent systems.</p>
-</div>
+<article class="article-wrap fade-in">
 
-<div class="posts-body">
+  <a href="../blog.html" class="article-back">← All Writing</a>
 
-  <!-- FEATURED -->
-  <a href="blog/zugzegk.html" class="featured-post" style="text-decoration: none; color: inherit; display: grid;">
-    <div class="featured-post-content">
-      <p class="featured-label">★ Featured Essay</p>
-      <h2 class="featured-title">Zugzegk</h2>
-      <p class="featured-excerpt">A word Jimmy Fallon couldn't pronounce, a song nobody had heard before, and the same question I keep coming back to about what a machine could and couldn't have done instead.</p>
-      <span class="read-more">Read Essay →</span>
+  <p class="article-eyebrow">Essay · AI & Creativity</p>
+  <h1 class="article-title">Zugzegk</h1>
+  <p class="article-subtitle">A word Jimmy Fallon couldn't pronounce, a song nobody had heard before, and the same question I keep coming back to.</p>
+
+  <div class="article-meta">
+    <span class="meta-item"><strong>Debra Hogue, PhD</strong></span>
+    <span class="meta-item">September 2026</span>
+    <span class="meta-item">6 min read</span>
+    <div class="article-tags">
+      <span class="tag">AI & Creativity</span>
+      <span class="tag">Authenticity</span>
+      <span class="tag">Music</span>
     </div>
-    <div class="featured-meta">
-      <div>
-        <p class="featured-date">September 2026</p>
-        <div class="featured-tags">
-          <span class="tag">AI & Creativity</span>
-          <span class="tag">Authenticity</span>
-          <span class="tag">Music</span>
-        </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>In June, I wrote about a masked math rock duo from Quebec and the question their music kept raising for me: whether authenticity is about the absence of AI or the presence of human intent. I said I'd land on presence, and I still do. But I didn't expect to be back at this so soon, or for the occasion to be Jimmy Fallon standing on a soundstage trying and failing to pronounce a word.</p>
+
+    <p>Monday night, Angine de Poitrine made their U.S. television debut on <em>The Tonight Show</em>. It was also the first time anyone outside their touring crowds had heard the song they played. Fallon introduced it, stumbled charmingly over the title, and then Khn and Klek did their triangle hand sign and disappeared into four minutes of looped, microtonal, deeply strange music that somehow still resolved into something you could nod along to. The song is called "Zugzegk." I am not going to pretend I know how to say it either.</p>
+
+    <div class="video-embed">
+      <p class="video-label">Watch · Television Debut</p>
+      <p class="video-title">Angine de Poitrine — "Zugzegk" (The Tonight Show Starring Jimmy Fallon, Sept. 14, 2026)</p>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/38rvtcwhuw4" title="Angine de Poitrine: Zugzegk | The Tonight Show Starring Jimmy Fallon" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
-      <p class="featured-quote">"A song that has never been played before is a different kind of object than a song that has always already existed."</p>
+      <a href="https://www.youtube.com/watch?v=38rvtcwhuw4" target="_blank" class="video-link">Watch on YouTube ↗</a>
     </div>
-  </a>
 
-  <!-- POST LIST -->
-  <p class="posts-heading">All Writing</p>
-  <ul class="post-list">
-    <li class="post-item">
-      <span class="post-date">Jul 2026</span>
-      <a href="blog/who-and-how.html" class="post-title-link">
-        <p class="post-title">Who and How</p>
-        <p class="post-summary">A new UN initiative on trust in AI agents opens by naming two questions that earlier trust efforts kept collapsing into one. That, more than anything it has built yet, is worth being glad about.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jul 2026</span>
-      <a href="blog/six-thousand-five-hundred-packages.html" class="post-title-link">
-        <p class="post-title">Six Thousand Five Hundred Packages</p>
-        <p class="post-summary">IBM and Red Hat announced new "trust infrastructure" for open source software. Signed binaries, certified dependencies, an AI remediation engine, a clearinghouse for coordinating patches. Nine paragraphs, and not one mention of the person deciding whether to trust any of it.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jul 2026</span>
-      <a href="blog/thirty-one-seconds.html" class="post-title-link">
-        <p class="post-title">Thirty-One Seconds</p>
-        <p class="post-summary">Security researchers documented an AI agent that ran an entire extortion campaign without a human in the loop. What they could not document is whether the machine understood any of it.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jul 2026</span>
-      <a href="blog/three-quarters-agreed.html" class="post-title-link">
-        <p class="post-title">Three-Quarters Agreed</p>
-        <p class="post-summary">A week of AI trust-gap reporting converged on the same fix: more testing, more monitoring, more governance. The numbers inside one of those reports suggest the fix was never the thing missing.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jul 2026</span>
-      <a href="blog/sally-will-remain-seated.html" class="post-title-link">
-        <p class="post-title">Sally Will Remain Seated</p>
-        <p class="post-summary">A rural New York district is putting a humanoid robot in the classroom this fall. The disclosures are thorough. The one thing nobody has described is what a student or teacher can do about it.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-goats-were-never-agentic.html" class="post-title-link">
-        <p class="post-title">The Goats Were Never Agentic</p>
-        <p class="post-summary">A Microsoft researcher built a working computer out of Age of Empires II goats to prove a point about language. The point applies just as well to the gap between what people understand about AI and what they trust it to do.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-default.html" class="post-title-link">
-        <p class="post-title">The Default</p>
-        <p class="post-summary">When the output looks finished, the question of how it got there tends not to get asked. What AI design homogeneity reveals about trust, agency, and the questions defaults foreclose.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/recon-this.html" class="post-title-link">
-        <p class="post-title">Recon This</p>
-        <p class="post-summary">A low-skill attacker. Fourteen breached companies. One prompt. What the session logs reveal about trust in agentic AI — and what guardrails were never built to catch.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/what-the-camera-cannot-see.html" class="post-title-link">
-        <p class="post-title">What the Camera Cannot See</p>
-        <p class="post-summary">Designers are building garments that defeat facial recognition. They are working from the same map computer vision researchers have been studying for years.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-signal-in-the-noise.html" class="post-title-link">
-        <p class="post-title">The Signal in the Noise</p>
-        <p class="post-summary">An AI caught something the doctors missed. What that moment reveals about trust, comprehension, and what happens when a flag arrives without an explanation.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-day-the-caps-kicked-in.html" class="post-title-link">
-        <p class="post-title">The Day the Caps Kicked In</p>
-        <p class="post-summary">What a lawsuit against Anthropic reveals about trust, pricing, and what users actually understood when they subscribed.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-process-is-the-point.html" class="post-title-link">
-        <p class="post-title">The Process Is the Point</p>
-        <p class="post-summary">When a government pulls an AI system offline without showing its work, it hasn't made anyone safer. It's just made the problem invisible.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/crisis-adoption-in-the-wild.html" class="post-title-link">
-        <p class="post-title">Crisis Adoption in the Wild</p>
-        <p class="post-summary">A $16.9 million contract, a financial emergency, and what happens when an entire university system adopts AI before it knows what it needs.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/still-waiting-on-the-bill.html" class="post-title-link">
-        <p class="post-title">Still Waiting on the Bill</p>
-        <p class="post-summary">When a tool amplifies capability in both directions, releasing it is not a technical decision. It is a trust decision.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-day-the-bill-arrives.html" class="post-title-link">
-        <p class="post-title">The Day the Bill Arrives</p>
-        <p class="post-summary">What happens after the crisis adoption — when the tab comes due and no one has established what any of it was worth.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/ai-should-happen-with-us.html" class="post-title-link">
-        <p class="post-title">AI Should Happen With Us</p>
-        <p class="post-summary">On accountability, agency, and what it actually looks like to work alongside AI — not beneath it.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/crisis-adoption-problem.html" class="post-title-link">
-        <p class="post-title">The Crisis Adoption Problem</p>
-        <p class="post-summary">Why we reach for AI hardest when we can least afford to get it wrong — and what that costs us.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-bandwagon-problem.html" class="post-title-link">
-        <p class="post-title">The Bandwagon Problem</p>
-        <p class="post-summary">Why "everyone is doing it" is the most dangerous reason to adopt AI — and the most common one.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/the-infinite-team-problem.html" class="post-title-link">
-        <p class="post-title">The Infinite Team Problem</p>
-        <p class="post-summary">Meta just launched an AI agent designed to replace your customer service team. My research suggests we should be asking who's still in the loop — and what happens when no one is.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/trust-without-understanding.html" class="post-title-link">
-        <p class="post-title">Trust Without Understanding</p>
-        <p class="post-summary">82% of AI deployments fail to move beyond proof of concept. The reason isn't technology. It's cognition.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-    <li class="post-item">
-      <span class="post-date">Jun 2026</span>
-      <a href="blog/can-ai-replicate-authenticity.html" class="post-title-link">
-        <p class="post-title">Can AI Replicate Authenticity?</p>
-        <p class="post-summary">A math rock band from Quebec, a viral performance, and what they reveal about human intent in the age of AI.</p>
-      </a>
-      <span class="post-arrow">→</span>
-    </li>
-  </ul>
-</div>
+    <h2>Debuting Live, on Purpose</h2>
+
+    <p>What strikes me most isn't the song itself, though it's a good one. It's the decision to debut it there, unreleased, unrehearsed for an audience, on the single biggest stage of the band's career so far. There was no studio version to fall back on if it went sideways. No prior performance to point to. Just two people committing to something new in front of millions of people who had never heard of them a year ago.</p>
+
+    <p>That's a strange kind of risk to take on purpose. It only makes sense if the performance itself is the point, not the artifact it produces. A generated track doesn't have a debut. It doesn't have a first time it could have gone wrong. It exists complete, or it doesn't exist. What happened on Fallon's stage only means something because it hadn't happened before, anywhere, and everyone watching knew that.</p>
+
+    <div class="pullquote">
+      <p>"A song that has never been played before is a different kind of object than a song that has always already existed."</p>
+    </div>
+
+    <h2>The Mask Isn't Hiding Anything</h2>
+
+    <p>I've been thinking about the costumes differently since June, too. It would be easy to read the masks and the alien mythology as a kind of shield, a way of not being seen. But watching the Fallon clip, that's backwards. Khn and Klek are more legible in character than most performers are without one. The triangle sign before every set. The robotic vocal intro. The specific, accumulated grammar of a persona built over years of actually performing it, live, in front of people, run after run.</p>
+
+    <p>That's not obscurity. It's a very deliberate form of control over how they're perceived, one that took real time and real repetition to earn. You can't fake having a signature move you've done a hundred times before. You can only actually do it a hundred times.</p>
+
+    <h2>Could a Model Write "Zugzegk"?</h2>
+
+    <p>The question people keep asking me, and the one I keep asking myself, is whether a generative model could produce something that sounds like this. Probably closer than I'd like to admit. Microtonality is describable. Loop-pedal structures are describable. A model trained on enough of AdP's catalog could likely approximate the surface texture of their sound, maybe convincingly, to a casual listener.</p>
+
+    <p>What it couldn't do is choose to play it for the first time on live television, with the specific vulnerability of a debut, in front of an audience it needed to win over on a specific Monday night in September. It couldn't have broken a string on stage in New York the week before, the way Khn actually did, and kept playing anyway. Imitating a sound is not the same as living through the conditions that produced it. The song is downstream of a decade of two people showing up and doing the work in front of people. That part doesn't generate.</p>
+
+    <p>So my answer hasn't really changed since June. It's not that AI categorically can't make something that sounds like this. It's that the thing that makes "Zugzegk" matter isn't in the waveform. It's in the fact that it happened once, live, on purpose, and everyone watching knew it.</p>
+
+    <div class="footnote-block">
+      <p class="footnote-label">Related</p>
+      <p class="footnote-text">This essay continues a thread from <a href="can-ai-replicate-authenticity.html">"Can AI Replicate Authenticity?"</a>, written in June after Angine de Poitrine's KEXP session went viral.</p>
+    </div>
+
+    <div class="article-signoff">
+      <div class="signoff-avatar">DH</div>
+      <div>
+        <p class="signoff-name">Debra Hogue, PhD</p>
+        <p class="signoff-title">Computer Scientist · Human-AI Collaboration Researcher · Oklahoma</p>
+      </div>
+    </div>
+
+  </div>
+</article>
 
 <footer>
   <span>© 2026 Dr. Debra Hogue</span>
-  <span><a href="index.html" style="color: inherit; text-decoration: none;">← Back to Home</a></span>
+  <span><a href="../blog.html" style="color: inherit; text-decoration: none;">← Back to Writing</a></span>
 </footer>
 
 </body>
